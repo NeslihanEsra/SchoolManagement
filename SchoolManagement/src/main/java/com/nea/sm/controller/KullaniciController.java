@@ -25,7 +25,7 @@ public class KullaniciController {
 	@PostConstruct
 	private void init() {
 		System.out.println("Post Construct oluþturuldu");
-		kullaniciList = kullaniciRepository.findAll();
+		kullaniciList = kullaniciRepository.findAllByOrderByIdAsc();
 		kullanici = new Kullanici();
 	}
 	
@@ -33,16 +33,19 @@ public class KullaniciController {
 		System.out.println("Kullanýcý kaydedildi");
 		kullaniciRepository.save(kullanici);
 		kullanici = new Kullanici();
-		kullaniciList=kullaniciRepository.findAll();
+		kullaniciList=kullaniciRepository.findAllByOrderByIdAsc();
 	}
 	
 	public void kullaniciSil(Long id) {
 		System.out.println("Kullanýcý silindi");
 		Kullanici kullanici = kullaniciRepository.findOne(id);
 		kullaniciRepository.delete(kullanici);
-		kullaniciList=kullaniciRepository.findAll();
+		kullaniciList=kullaniciRepository.findAllByOrderByIdAsc();
 	}
 		
+	public void kullaniciyiGüncelle(Long id) {
+		kullanici = kullaniciRepository.findOne(id);
+	}
 	
 	// getter and setter
 	
