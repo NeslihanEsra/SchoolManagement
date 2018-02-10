@@ -5,7 +5,7 @@
 	id="WebApp_ID" version="3.0">
 	<display-name>SchoolManagement</display-name>
 	
-<!-- 	app container bu dosyaya bakarak web app olduğunu tanır -->
+<!-- app container(tomcat) bu dosyaya bakarak web app olduğunu tanır -->
 	
 	<!-- Defaultta açılacak sayfa -->
 	<welcome-file-list>
@@ -25,6 +25,12 @@
             org.springframework.web.context.ContextLoaderListener
         </listener-class>
     </listener>
+
+	<!-- template -->
+    <context-param>
+		<param-name>primefaces.THEME</param-name>
+		<param-value>bootstrap</param-value>
+	</context-param>
       
       <!-- configürasyon dosyaları tanıtılır, Spring engine çalıştırılır -->
       <context-param>

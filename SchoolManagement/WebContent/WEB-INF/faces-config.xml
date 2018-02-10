@@ -5,6 +5,7 @@
 	version="2.2">
 
 	<application>
+		<!-- spring framework, jsf de yer alan java classlarını çözümler -->
 		<el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
 	</application>
 </faces-config>
