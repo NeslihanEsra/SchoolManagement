@@ -8,8 +8,11 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import lombok.Data;
+
 @Entity
 @Table(name = "kullanici")
+@Data
 public class Kullanici extends BaseEntity {
 	@Id
 	@Column(name = "id")
@@ -32,52 +35,5 @@ public class Kullanici extends BaseEntity {
 	@Column(name = "eposta", length = 15)
 	private String eposta;
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getAd() {
-		return ad;
-	}
-
-	public void setAd(String ad) {
-		this.ad = ad;
-	}
-
-	public String getSoyad() {
-		return soyad;
-	}
-
-	public void setSoyad(String soyad) {
-		this.soyad = soyad;
-	}
-
-	public String getKullaniciAdi() {
-		return kullaniciAdi;
-	}
-
-	public void setKullaniciAdi(String kullaniciAdi) {
-		this.kullaniciAdi = kullaniciAdi;
-	}
-
-	public String getSifre() {
-		return sifre;
-	}
-
-	public void setSifre(String sifre) {
-		this.sifre = sifre;
-	}
-	
-	public String getEposta() {
-		return eposta;
-	}
-	
-	public void setEposta(String eposta) {
-		this.eposta = eposta;
-	}
 
 }
