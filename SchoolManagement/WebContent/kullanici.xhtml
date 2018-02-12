@@ -5,10 +5,18 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	template="/content/layout/template.xhtml">
 	<ui:define name="pageContent" >
-
+	
 <h:form id="frmKullanici">
-	<p:dataTable var="kullanici" id="tblKullanici" widgetVar="tblKullanici" value="#{kullaniciController.kullaniciList}" 
-	paginator="true" rows="5"
+	<style>
+		.ui-growl {
+		z-index:9999 !important;
+		}
+	</style>
+
+	<p:growl id="growl" showDetail="true" sticky="true" autoUpdate="true" />
+
+	<p:dataTable var="kullanici" id="tblKullanici" widgetVar="tblKullanici" value="#{kullaniciController.lazyDataModel}" 
+	reflow="true" paginator="true" rows="5" lazy="true" 
 	paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 	rowsPerPageTemplate="5,10,15" >
 		<p:column headerText="Id">
@@ -25,6 +33,20 @@
 
 		<p:column headerText="Kullanici Adı">
 			<h:outputText value="#{kullanici.kullaniciAdi}" />
+		</p:column>
+		
+		<p:column headerText="Üyelik Tarihi">
+			<h:outputText value="#{kullanici.uyelikTarihi}" >
+				<f:convertDateTime pattern="dd-MM-yyyy" />
+			</h:outputText>
+		</p:column>
+		
+		<p:column headerText="Eposta">
+			<h:outputText value="#{kullanici.eposta}" />
+		</p:column>
+		
+		<p:column headerText="Telefon">
+			<h:outputText value="#{kullanici.tel}" />
 		</p:column>
 		
 		<p:column headerText="İşlemler" >
@@ -45,7 +67,7 @@
 		<p:commandButton icon="ui-icon-plus" value="Yeni" type="button" onclick="PF('dlgKullanici').show();" />
 	</h:panelGrid>
 
-	<p:dialog header="Kullanıcı Bilgileri" widgetVar="dlgKullanici" id="dlgKullanici" modal="true" resizable="false">
+	<p:dialog header="Kullanıcı Bilgileri" widgetVar="dlgKullanici" id="dlgKullanici" modal="true" resizable="false" >
 		<p:panelGrid columns="2">			
 			<p:outputLabel value="Ad" />
 			<p:inputText  value="#{kullaniciController.kullanici.ad}" />
@@ -58,7 +80,16 @@
 			
 			<p:outputLabel value="Şifre" />
 			<p:password  value="#{kullaniciController.kullanici.sifre}" />
+        	
+        	<p:outputLabel value="Üyelik Tarihi" />
+        	<p:calendar value="#{kullaniciController.kullanici.uyelikTarihi}" pattern="dd-MM-yyyy" />
+
+			<p:outputLabel value="Eposta" />
+			<p:inputText  value="#{kullaniciController.kullanici.eposta}" />
 			
+			<p:outputLabel value="Telefon" />
+        	<p:inputMask value="#{kullaniciController.kullanici.tel}" mask="(999)999-9999"/>
+						
 			<p:commandButton value="İptal" type="button" onclick="PF('dlgKullanici').hide();" />
 			<p:commandButton value="Kaydet" update="dlgKullanici tblKullanici" oncomplete="PF('dlgKullanici').hide();" actionListener="#{kullaniciController.kullaniciKaydet}"  />
 		

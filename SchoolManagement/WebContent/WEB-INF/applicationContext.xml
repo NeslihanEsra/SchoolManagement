@@ -12,11 +12,10 @@
 		http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 
 	<!-- annotationların nerede oluduğunu belirtme -->
-	<context:component-scan base-package="com.nea" />
+	<context:component-scan base-package="com.nea.sm" />
 
 	<!-- annotationları anlamlandırma -->
-	<bean
-		class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor" />
+	<bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor" />
 
 	<!-- db ile iletişime geçme, db bilgilerini 'data source' adında class a kayıt etme -->
 	<bean id="dataSource" class="org.postgresql.jdbc3.Jdbc3PoolingDataSource"
@@ -29,12 +28,10 @@
 		<property name="initialConnections" value="3" />
 		<property name="maxConnections" value="50" />
 	</bean>
+	
+	<bean id="hibernateJpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
 
-	<bean id="hibernateJpaVendorAdapter"
-		class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
-
-	<bean id="entityManagerFactory"
-		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="jpaVendorAdapter" ref="hibernateJpaVendorAdapter" />
 		<property name="jpaProperties">
