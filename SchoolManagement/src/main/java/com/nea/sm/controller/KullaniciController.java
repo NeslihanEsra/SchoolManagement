@@ -1,5 +1,6 @@
 package com.nea.sm.controller;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
@@ -23,7 +24,7 @@ import lombok.Setter;
 
 @Controller("kullaniciController")
 @Scope("session")
-public class KullaniciController {
+public class KullaniciController implements Serializable{
 
 	@Autowired
 	private KullaniciRepository kullaniciRepository;
@@ -39,7 +40,7 @@ public class KullaniciController {
 	
 	@PostConstruct
 	private void init() {
-		System.out.println("Post Construct oluþturuldu");
+		System.out.println("Kullanýcý-Post Construct oluþturuldu");
 		sýrala();
 		kullanici = new Kullanici();
 	}
@@ -66,7 +67,12 @@ public class KullaniciController {
         context.addMessage(null, new FacesMessage("BAÞARILI",  "Kayýt Silindi") );
 	}
 	
-	private void sýrala() {
+	public void kullaniciyiGüncelle(Long id) {
+		System.out.println("Kullanýcý guncellendi");
+		kullanici = kullaniciRepository.findOne(id);
+	}
+	
+	public void sýrala() {
 		System.out.println("lazy load aktif");
 		
 		lazyDataModel = new LazyDataModel<Kullanici>() {
@@ -81,10 +87,5 @@ public class KullaniciController {
 				return liste.getContent();
 			}
 		};
-	}
-		
-	public void kullaniciyiGüncelle(Long id) {
-		System.out.println("Kullanýcý guncellendi");
-		kullanici = kullaniciRepository.findOne(id);
 	}
 }

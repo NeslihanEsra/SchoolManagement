@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -41,6 +43,7 @@ public class Kullanici extends BaseEntity {
 	private String eposta;
 	
 	@Column(name = "uyelik_tarihi")
+	@Temporal(TemporalType.DATE)
 	private Date uyelikTarihi;
 	
 	@Column(name = "tel", length=10)	
