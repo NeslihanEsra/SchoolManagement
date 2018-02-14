@@ -12,8 +12,10 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 import lombok.Data;
+import lombok.Getter;
 
 @Entity
 @Table(name = "ogretmen")
@@ -46,6 +48,16 @@ public class Ogretmen {
 	@Column(name = "kayit_tarihi")
 	@Temporal(TemporalType.DATE)
     private Date kayitTarihi;
+	
+	private String adSoyad;
+	
+	@Transient
+	public String getAdSoyad(){
+		return this.ad + " " + this.soyad;
+	}
+	
+	
+
 	
 	 @Override
 	    public boolean equals(Object obj) {

@@ -32,7 +32,7 @@
 		</p:column>
 		
 		<p:column headerText="Öğretmen Adı">
-			<h:outputText value="#{grup.ogretmen.ad} #{grup.ogretmen.soyad}" />
+			<h:outputText value="#{grup.ogretmen.adSoyad}" />
 		</p:column>
 		
 		<p:column headerText="Kurs Adı">
@@ -85,7 +85,7 @@
 			<p:inputText  value="#{grupController.grup.ogrenciSayisi}" />
 			
 			<p:outputLabel value="Salon Adı" />
-			<p:selectOneMenu value="#{grupController.grup.salon}" effect="blind" converter="#{salonConverter}">
+			<p:selectOneMenu value="#{grupController.grup.salon}" effect="blind" converter="#{salonConverter}" >
 	            <f:selectItems value="#{grupController.salonList}" var="salon" itemLabel="#{salon.ad}/#{salon.kod}" itemValue="#{salon}"/>
        		 </p:selectOneMenu>
        		 
@@ -95,14 +95,10 @@
        		 </p:selectOneMenu>
        		 
        		<p:outputLabel value="Öğretmen Adı" />
-			<p:autoComplete value="#{grupController.grup.ogretmen}" completeMethod="#{grupController.ogretmenAutoComplete}" effect="blind"
-	                        var="ogretmen" itemLabel="#{ogretmen.ad} #{ogretmen.soyad}" itemValue="#{ogretmen}" converter="#{ogretmenConverter}" forceSelection="true">
+			<p:autoComplete value="#{grupController.grup.ogretmen}" completeMethod="#{grupController.ogretmenAutoComplete}" effect="blind" style="width:185px!important;"
+	                        var="ogretmen" itemLabel="#{ogretmen.adSoyad}" itemValue="#{ogretmen}" converter="#{ogretmenConverter}" forceSelection="true">
 	            <p:column style="width:10%">
-	                <h:outputText value="#{ogretmen.ad}"  />
-	            </p:column>
-	 
-	            <p:column>
-	                <h:outputText value="#{ogretmen.soyad}" />
+	                <h:outputText value="#{ogretmen.ad} #{ogretmen.soyad}"  />
 	            </p:column>
 	        </p:autoComplete>
         	

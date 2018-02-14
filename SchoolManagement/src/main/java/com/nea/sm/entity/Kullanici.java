@@ -12,6 +12,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -36,7 +37,7 @@ public class Kullanici extends BaseEntity {
 	@Column(name = "k_adi", length = 15, unique=true)
 	private String kullaniciAdi;
 
-	@Column(name = "k_sifre", length = 15)
+	@Column(name = "k_sifre")
 	private String sifre;
 	
 	@Column(name = "eposta", length = 15)
@@ -52,4 +53,10 @@ public class Kullanici extends BaseEntity {
 	@Enumerated
 	@Column(name = "rol")	
 	private KullaniciRol rol;
+	 	
+	@Transient
+	public String getAdSoyad(){
+		return this.ad + " " + this.soyad;
+	}
+	
 }

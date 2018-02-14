@@ -111,12 +111,13 @@ public class GrupController implements Serializable{
 				return liste.getContent();
 			}
 		};
-
 	}
 	
 	public List<Ogretmen> ogretmenAutoComplete(String query) {
 		List<Ogretmen> list = ogretmenRepository.getByName(query);
 		return list;
 	}
+	
+	
 	
 }
