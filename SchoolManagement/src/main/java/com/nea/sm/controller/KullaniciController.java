@@ -72,6 +72,10 @@ public class KullaniciController implements Serializable{
 		kullanici = kullaniciRepository.findOne(id);
 	}
 	
+	public void yenile() {
+		kullanici = new Kullanici();
+	}
+	
 	public void sýrala() {
 		System.out.println("lazy load aktif");
 		

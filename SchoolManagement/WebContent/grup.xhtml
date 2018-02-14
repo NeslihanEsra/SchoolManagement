@@ -28,7 +28,15 @@
 		</p:column>
 		
 		<p:column headerText="Salon Adı">
-			<h:outputText value="#{grup.salon.ad}" />
+			<h:outputText value="#{grup.salon.ad}/#{grup.salon.kod}" />
+		</p:column>
+		
+		<p:column headerText="Öğretmen Adı">
+			<h:outputText value="#{grup.ogretmen.ad} #{grup.ogretmen.soyad}" />
+		</p:column>
+		
+		<p:column headerText="Kurs Adı">
+			<h:outputText value="#{grup.kurs.ad}" />
 		</p:column>
 		
 		<p:column headerText="Öğrenci Sayısı">
@@ -46,11 +54,27 @@
 				<f:convertDateTime pattern="dd-MM-yyyy" />
 			</h:outputText>
 		</p:column>
+		
+		<p:column headerText="İşlemler">
+			<p:commandButton icon="ui-icon-trash" actionListener="#{grupController.grupSil(grup.id)}" update="tblGrup">
+				<p:confirm header="Silme Onay" message="Grubu silmek istediğinizden emin misiniz?" icon="ui-icon-alert" />
+			</p:commandButton>	
+			<p:commandButton icon="ui-icon-pencil" update=":frmGrup:dlgGrup" actionListener="#{grupController.grupGuncelle(grup.id)}" oncomplete="PF('dlgGrup').show();" />
+			
+			<!-- silme modal -->
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+				<p:commandButton value="Evet" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+				<p:commandButton value="Hayır" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+	    	</p:confirmDialog>
+		</p:column>
+		
+		<f:facet name="footer">
+			<!-- 'yeni' butonu -->
+			<p:commandButton icon="ui-icon-plus" value="Yeni" update=":frmGrup:dlgGrup" actionListener="#{grupController.yenile}" oncomplete="PF('dlgGrup').show();" />
+		</f:facet>
 	</p:dataTable>
 	
-	<h:panelGrid columns="1" cellpadding="5">
-		<p:commandButton icon="ui-icon-plus" value="Yeni" update=":frmGrup:dlgGrup" actionListener="#{grupController.yenile}" oncomplete="PF('dlgGrup').show();" />
-	</h:panelGrid>
+	<!-- 'Yeni' butonu  -->
 
 	<p:dialog header="Grup Bilgileri" widgetVar="dlgGrup" id="dlgGrup" modal="true" resizable="false" >
 		<p:panelGrid columns="2">			
@@ -61,9 +85,26 @@
 			<p:inputText  value="#{grupController.grup.ogrenciSayisi}" />
 			
 			<p:outputLabel value="Salon Adı" />
-			<p:selectOneMenu value="#{grupController.grup.salon}" effect="fold" converter="#{salonConverter}">
-	            <f:selectItems value="#{grupController.salonList}" var="salon" itemLabel="#{salon.ad} - #{salon.kod}" itemValue="#{salon}"/>
+			<p:selectOneMenu value="#{grupController.grup.salon}" effect="blind" converter="#{salonConverter}">
+	            <f:selectItems value="#{grupController.salonList}" var="salon" itemLabel="#{salon.ad}/#{salon.kod}" itemValue="#{salon}"/>
        		 </p:selectOneMenu>
+       		 
+       		<p:outputLabel value="Kurs Adı" />
+			<p:selectOneMenu value="#{grupController.grup.kurs}" effect="blind" converter="#{kursConverter}">
+	            <f:selectItems value="#{grupController.kursList}" var="kurs" itemLabel="#{kurs.ad}" itemValue="#{kurs}"/>
+       		 </p:selectOneMenu>
+       		 
+       		<p:outputLabel value="Öğretmen Adı" />
+			<p:autoComplete value="#{grupController.grup.ogretmen}" completeMethod="#{grupController.ogretmenAutoComplete}" effect="blind"
+	                        var="ogretmen" itemLabel="#{ogretmen.ad} #{ogretmen.soyad}" itemValue="#{ogretmen}" converter="#{ogretmenConverter}" forceSelection="true">
+	            <p:column style="width:10%">
+	                <h:outputText value="#{ogretmen.ad}"  />
+	            </p:column>
+	 
+	            <p:column>
+	                <h:outputText value="#{ogretmen.soyad}" />
+	            </p:column>
+	        </p:autoComplete>
         	
         	<p:outputLabel value="Başlama Tarihi" />
         	<p:calendar value="#{grupController.grup.baslamaTarihi}" pattern="dd-MM-yyyy" />

@@ -17,8 +17,12 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 
 import com.nea.sm.entity.Grup;
+import com.nea.sm.entity.Kurs;
+import com.nea.sm.entity.Ogretmen;
 import com.nea.sm.entity.Salon;
 import com.nea.sm.repository.GrupRespository;
+import com.nea.sm.repository.KursRepository;
+import com.nea.sm.repository.OgretmenRepository;
 import com.nea.sm.repository.SalonRepository;
 
 import lombok.Getter;
@@ -39,11 +43,23 @@ public class GrupController implements Serializable{
 	@Autowired
 	private SalonRepository salonRepository;
 	
+	@Autowired
+	private OgretmenRepository ogretmenRepository;
+	
+	@Autowired
+	private KursRepository kursRepository;
+	
 	@Getter @Setter
 	private LazyDataModel<Grup> lazyDataModel;
 	
 	@Getter @Setter
 	private List<Salon> salonList;
+	
+	@Getter @Setter
+	private List<Kurs> kursList;
+	
+//	@Getter @Setter
+//	private List<Ogretmen> ogretmenList;
 	
 	@Getter @Setter
 	private Grup grup;
@@ -54,19 +70,14 @@ public class GrupController implements Serializable{
 		sýrala();
 		grup = new Grup();
 		salonList = salonRepository.getAllByOrderByIdAsc();
+		//ogretmenList = ogretmenRepository.getAllByOrderByIdAsc();
+		kursList = kursRepository.getAllByOrderByIdAsc();
 	}
 	
 	public void grupKaydet() {
 		if (grup != null) {
 			grupRespository.save(grup);
 		}
-		sýrala();
-	}
-
-	public void grupGuncelle(Long id) {
-		System.out.println("Grup guncellendi");
-		Grup grup = grupRespository.findOne(id);
-		grupRespository.delete(grup);
 		sýrala();
 	}
 	
@@ -81,7 +92,7 @@ public class GrupController implements Serializable{
 		grup = new Grup();
 	}
 	
-	public void guncelle(Long id) {
+	public void grupGuncelle(Long id) {
 		grup = grupRespository.findOne(id);
 	}
 
@@ -101,6 +112,11 @@ public class GrupController implements Serializable{
 			}
 		};
 
+	}
+	
+	public List<Ogretmen> ogretmenAutoComplete(String query) {
+		List<Ogretmen> list = ogretmenRepository.getByName(query);
+		return list;
 	}
 	
 }
