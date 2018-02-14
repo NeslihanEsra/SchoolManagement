@@ -52,11 +52,6 @@ public class Grup {
     @Temporal(TemporalType.DATE)
     private Date bitisTarihi;
     
-
-    @Override
-    public String toString() {
-        return "Grup{" + "id=" + id + ", adi=" + ad + ", kurs=" + kurs + ", Ogretmen=" + ogretmen + ", ogrenciSayisi=" + ogrenciSayisi + ", salon=" + salon + ", baslamaTarihi=" + baslamaTarihi + ", bitisTarihi=" + bitisTarihi + '}';
-    }  
     
     @Override
     public boolean equals(Object obj) {

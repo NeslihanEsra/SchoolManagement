@@ -7,11 +7,15 @@
 	<ui:define name="pageContent">
 	<h:form id="frmGrup">
 	
-	<!-- Sayfa Mesajı -->
-	<p:growl id="growl" showDetail="true" sticky="true" autoUpdate="true" />
+	<style>
+	.ui-selectonemenu .ui-selectonemenu-trigger{
+		width:23px !important;
+		padding:3px !important;
+	}
+	</style>
 	
-	<p:dataTable var="grup" id="tblGrup" widgetVar="tblGrup" value="#{grupController.lazyDataModel}" 
-	reflow="true" paginator="true" rows="5" lazy="true" 
+	<p:dataTable id="tblGrup" widgetVar="tblGrup" var="grup" value="#{grupController.lazyDataModel}" 
+	reflow="true" paginator="true" rows="10" lazy="true" 
 	paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 	rowsPerPageTemplate="5,10,15" >
 		
@@ -22,17 +26,13 @@
 		<p:column headerText="Grup Adı">
 			<h:outputText value="#{grup.ad}" />
 		</p:column>
-
-<!-- 		<p:column headerText="Kurs Adı"> -->
-<!-- 			<h:outputText value="#{grup.kurs.ad}" /> -->
-<!-- 		</p:column> -->
-
-<!-- 		<p:column headerText="Öğretmen Adı"> -->
-<!-- 			<h:outputText value="#{grup.ogretmen.ad}" /> -->
-<!-- 		</p:column> -->
 		
 		<p:column headerText="Salon Adı">
 			<h:outputText value="#{grup.salon.ad}" />
+		</p:column>
+		
+		<p:column headerText="Öğrenci Sayısı">
+			<h:outputText value="#{grup.ogrenciSayisi}" />
 		</p:column>
 		
 		<p:column headerText="Başlama Tarihi">
@@ -48,9 +48,8 @@
 		</p:column>
 	</p:dataTable>
 	
-	<!-- 'Yeni' butonu  -->
 	<h:panelGrid columns="1" cellpadding="5">
-		<p:commandButton icon="ui-icon-plus" value="Yeni" type="button" onclick="PF('dlgGrup').show();" />
+		<p:commandButton icon="ui-icon-plus" value="Yeni" update=":frmGrup:dlgGrup" actionListener="#{grupController.yenile}" oncomplete="PF('dlgGrup').show();" />
 	</h:panelGrid>
 
 	<p:dialog header="Grup Bilgileri" widgetVar="dlgGrup" id="dlgGrup" modal="true" resizable="false" >
@@ -58,16 +57,12 @@
 			<p:outputLabel value="Grup Adı" />
 			<p:inputText  value="#{grupController.grup.ad}" />
 			
-<!-- 			<p:outputLabel value="Kurs Adı" /> -->
-<!-- 			<p:inputText  value="#{grupController.grup.kurs}" /> -->
-			
-<!-- 			<p:outputLabel value="Öğretmen Adı" /> -->
-<!-- 			<p:inputText value="#{grupController.grup.ogretmen}" /> -->
+			<p:outputLabel value="Öğrenci Sayısı" />
+			<p:inputText  value="#{grupController.grup.ogrenciSayisi}" />
 			
 			<p:outputLabel value="Salon Adı" />
-			<p:selectOneMenu value="#{grupController.grup.salon}" converter="#{salonConverter}">
-	            <f:selectItem itemLabel="Seçiniz" itemValue=""  />
-	            <f:selectItems value="#{grupController.salonList}" var="sln" itemLabel="#{sln.ad}" itemValue="#{sln}"/>
+			<p:selectOneMenu value="#{grupController.grup.salon}" effect="fold" converter="#{salonConverter}">
+	            <f:selectItems value="#{grupController.salonList}" var="salon" itemLabel="#{salon.ad} - #{salon.kod}" itemValue="#{salon}"/>
        		 </p:selectOneMenu>
         	
         	<p:outputLabel value="Başlama Tarihi" />

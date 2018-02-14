@@ -12,7 +12,7 @@ import com.nea.sm.entity.Salon;
 import com.nea.sm.repository.SalonRepository;
 
 @Controller("salonConverter")
-@Scope("request")
+@Scope(value="request")
 public class SalonConverter implements Converter {
 
 	@Autowired
@@ -23,6 +23,7 @@ public class SalonConverter implements Converter {
 		if (value != null && value.trim().length() > 0 && !value.equals("null")) {
 			try {
 				Salon salon = salonRepository.findOne(new Long(value));
+				return salon;
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -34,7 +35,7 @@ public class SalonConverter implements Converter {
 
 	@Override
 	public String getAsString(FacesContext context, UIComponent component, Object value) {
-		if (value != null && value instanceof Salon && !value.equals("null")) {
+		if (value != null && !value.equals("null") && value instanceof Salon ) {
 			return String.valueOf(((Salon)value).getId());
 		} else {
 			return null;

@@ -53,27 +53,36 @@ public class GrupController implements Serializable{
 		System.out.println("Kullanýcý-Post Construct oluþturuldu");
 		sýrala();
 		grup = new Grup();
-		salonList = salonRepository.findAll();
+		salonList = salonRepository.getAllByOrderByIdAsc();
 	}
 	
 	public void grupKaydet() {
 		if (grup != null) {
 			grupRespository.save(grup);
 		}
+		sýrala();
 	}
 
-	public void grupGüncelle(Long id) {
+	public void grupGuncelle(Long id) {
 		System.out.println("Grup guncellendi");
 		Grup grup = grupRespository.findOne(id);
 		grupRespository.delete(grup);
 		sýrala();
-		FacesContext context = FacesContext.getCurrentInstance();
-        context.addMessage(null, new FacesMessage("BAÞARILI",  "Grup Silindi") );
 	}
 	
 	public void grupSil(Long id) {
 		System.out.println("Grup silindi");
+		Grup grup = grupRespository.findOne(id);
+		grupRespository.delete(grup);
+		sýrala();
+	}
+	
+	public void yenile() {
 		grup = new Grup();
+	}
+	
+	public void guncelle(Long id) {
+		grup = grupRespository.findOne(id);
 	}
 
 	public void sýrala() {
@@ -86,7 +95,7 @@ public class GrupController implements Serializable{
 			@Override
 			public List<Grup> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
 				PageRequest pageRequest = new PageRequest(first/pageSize, pageSize);
-				Page<Grup> liste = grupRespository.findAll(pageRequest);
+				Page<Grup> liste = grupRespository.getAllByOrderByIdAsc(pageRequest);
 				this.setRowCount((int) liste.getTotalElements());
 				return liste.getContent();
 			}
