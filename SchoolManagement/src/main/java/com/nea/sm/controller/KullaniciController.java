@@ -18,6 +18,7 @@ import org.springframework.stereotype.Controller;
 
 import com.nea.sm.entity.Kullanici;
 import com.nea.sm.repository.KullaniciRepository;
+import com.nea.sm.service.KullaniciService;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -28,6 +29,9 @@ public class KullaniciController implements Serializable{
 
 	@Autowired
 	private KullaniciRepository kullaniciRepository;
+	
+	@Autowired
+	private KullaniciService kullaniciService;
 	
 //	@Getter @Setter
 //	private List<Kullanici> kullaniciList;
@@ -49,7 +53,7 @@ public class KullaniciController implements Serializable{
 		FacesContext context = FacesContext.getCurrentInstance();
 		try {
 			System.out.println("Kullanýcý kaydedildi");
-			kullaniciRepository.save(kullanici);
+			kullaniciService.save(kullanici);
 			sýrala();
 	        context.addMessage(null, new FacesMessage("BAÞARILI",  "Kayýt Eklendi") );
 		} catch (Exception e) {

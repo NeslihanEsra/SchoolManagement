@@ -10,11 +10,11 @@
 	<http pattern="/login.xhtml" security="none"/>
 
 	<http use-expressions="true">	
-		<intercept-url pattern="/secu re/*" access="isAuthenticated()" />
+		<intercept-url pattern="/secure/**" access="isAuthenticated()" />
 		<form-login default-target-url="/secure/index.xhtml" login-page="/login.xhtml"  />
 		<access-denied-handler error-page="/accessDenied.xhtml" /> 
-		<logout logout-url="/login.xhtml" invalidate-session="true"  logout-success-url="/login.xhtml"/>		
-	</http>
+		<logout invalidate-session="true" logout-url="/login.xhtml"  logout-success-url="/login.xhtml"/>		
+	</http>   
 
     <authentication-manager>
 	  <authentication-provider user-service-ref="userServiceImpl">
@@ -22,4 +22,4 @@
 	  </authentication-provider>
 	</authentication-manager>
 
-</beans:beans>
+</beans:beans> 

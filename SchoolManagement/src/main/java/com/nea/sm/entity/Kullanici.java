@@ -53,10 +53,10 @@ public class Kullanici extends BaseEntity {
 	@Enumerated
 	@Column(name = "rol")	
 	private KullaniciRol rol;
-	 	
+	
 	@Transient
 	public String getAdSoyad(){
 		return this.ad + " " + this.soyad;
 	}
 	
-}
+}  

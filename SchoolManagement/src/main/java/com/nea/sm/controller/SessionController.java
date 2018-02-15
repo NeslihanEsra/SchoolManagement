@@ -20,7 +20,7 @@ public class SessionController implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Autowired
-	private KullaniciRepository kullaniciRepository;
+	private  KullaniciRepository kullaniciRepository;
 	
 	public Kullanici getUser() {
 		String kullaniciAdi = SecurityContextHolder.getContext().getAuthentication().getName();
