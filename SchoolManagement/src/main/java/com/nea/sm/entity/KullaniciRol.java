@@ -4,6 +4,6 @@ public enum KullaniciRol {
 	ADMIN,
 	MUHASEBE,
 	OGRETMEN,
-	INSAN_KAYNAKLARI,
+	IK,
 	DEMÝRBAS,
 }
