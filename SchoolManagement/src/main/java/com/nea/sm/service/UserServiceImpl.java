@@ -25,7 +25,9 @@ public class UserServiceImpl implements UserDetailsService{
 		Kullanici kullanici = kullaniciRepository.getByKullaniciAdi(username);
 		List<GrantedAuthorityImpl> authorities = new ArrayList<>();
 		GrantedAuthorityImpl authority = new GrantedAuthorityImpl("USER");
+		GrantedAuthorityImpl authorityA = new GrantedAuthorityImpl(kullanici.getRol().name());
 		authorities.add(authority);
+		authorities.add(authorityA);
 		User user = new User(kullanici.getAd(), kullanici.getSifre(),true, true, true, true, authorities);
 		return user;
 	}
