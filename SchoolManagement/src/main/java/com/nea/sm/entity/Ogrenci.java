@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import lombok.Data;
 
@@ -46,4 +47,9 @@ public class Ogrenci {
 	@Enumerated
 	@Column(name="cinsiyet")
 	private EnumCinsiyet cinsiyet;
+	
+	@Transient
+	public String getAdSoyad(){
+		return this.ad + " " + this.soyad;
+	}
 }

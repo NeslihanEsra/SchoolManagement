@@ -1,5 +1,8 @@
 package com.nea.sm.entity;
 
+import java.math.BigDecimal;
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,10 +16,10 @@ import javax.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Table(name="yoklama_detay")
+@Table(name="ogrenci_grup")
 @Data
-public class YoklamaDetay {
-
+public class OgrenciGrup {
+	
 	@Id
 	@Column(name = "id")
 	@SequenceGenerator(name = "seq_yklm", allocationSize = 1, sequenceName = "seq_yklm")
@@ -24,13 +27,18 @@ public class YoklamaDetay {
 	private Long id;
 	
 	@ManyToOne
-	@JoinColumn(name="yoklama_id")
-	private Yoklama yoklama;
-	
-	@ManyToOne
-	@JoinColumn(name="ogrenci_id")
+	@JoinColumn(name = "ogrenci_id")
 	private Ogrenci ogrenci;
 	
-	@Column(name="geldi_mi")
-	private Boolean geldiMi;
+	@ManyToOne
+	@JoinColumn(name = "grup_id")
+	private Grup grup;
+	
+	@Column(name="ucret")
+	private BigDecimal ucret;
+	
+	@Column(name="kayýt_tarihi")
+	private Date kayýtTarihi;
+	
+
 }

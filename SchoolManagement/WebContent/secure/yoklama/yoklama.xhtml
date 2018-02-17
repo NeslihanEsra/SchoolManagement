@@ -12,21 +12,58 @@
 				padding:3px !important;
 			}
 			</style>
-			<p:panelGrid columns="1">
-				<p:outputLabel value="Grup bilgisini seçiniz:" />
-				<p:selectOneMenu value="#{yoklamaController.yoklama.grup}" effect="blind" converter="#{grupConverter}">
-		            <f:selectItems value="#{yoklamaController.grupList}" var="grup" itemLabel="#{grup.ad}" itemValue="#{grup}"/>
-	       		 </p:selectOneMenu>
-	       		 
-	       		 <p:outputLabel value="Yoklama tarihini seçiniz:" />
-	       		 <p:calendar id="clndrTarih" showOn="button" pattern="dd/MM/yyyy">
-	       		 	<p:ajax event="dateSelect" update=":frmYoklama:pnlYoklamaFormu" listener="#{yoklamaController.calendarChange}"></p:ajax>
-	       		 </p:calendar>
+			<p:panelGrid style="width:100%">
+				<p:row>
+					<p:column> <p:outputLabel value="Grup bilgisini seçiniz:" /> </p:column> 
+					<p:column> <p:selectOneMenu value="#{yoklamaController.yoklama.grup}" effect="blind" converter="#{grupConverter}">
+				            <f:selectItems value="#{yoklamaController.grupList}" var="grup" itemLabel="#{grup.ad}" itemValue="#{grup}"/>
+			       		 </p:selectOneMenu>
+			       	</p:column> 
+		       	</p:row>	 
+		       	<p:row>	 
+			       	<p:column> <p:outputLabel value="Yoklama tarihini seçiniz:" /> </p:column> 
+			       	<p:column> <p:calendar id="clndrTarih" value="#{yoklamaController.yoklama.yoklamaTarihi}" showOn="button" pattern="dd/MM/yyyy" /> </p:column> 
+		       	</p:row>	 
+		       	<p:row>		 
+			       	<p:column> <p:outputLabel value="İşlenen konu"/> </p:column>
+			       	<p:column> <p:inputText value="#{yoklamaController.yoklama.islenenKonu}"></p:inputText> </p:column>
+		       	</p:row>	 
+		       	<p:row>
+		       		 <p:column colspan="2">
+		       			 <p:commandButton value="Yoklama Al" update=":frmYoklama:pnlYoklamaFormu :frmYoklama:pnlYoklamaFormu:ogrenciSecim" actionListener="#{yoklamaController.yoklamaAl}" />
+		       		 </p:column>
+		       	</p:row>
 			</p:panelGrid>
-			
-			<p:panelGrid id="pnlYoklamaFormu" widgetVar="pnlYoklamaFormu" rendered="#{yoklamaController.yoklamaFormuGorunsun}">
-				<p:outputLabel value="asdfgh" />
+		
+			<p:panelGrid value="Yoklama Form" id="pnlYoklamaFormu" widgetVar="pnlYoklamaFormu" >
+				<h3>Öğrenciler</h3>
+			    <p:selectManyCheckbox id="ogrenciSecim" widgetVar="ogrenciSecim" value="#{yoklamaController.gelenOgrencilerList}" layout="responsive" columns="3">
+			        <f:selectItems value="#{yoklamaController.ogrenciGrupList}" var="ogrGrp" itemLabel="#{ogrGrp.ogrenci.adSoyad}" itemValue="#{ogrGrp.ogrenci.id}" />
+			    </p:selectManyCheckbox>
 			</p:panelGrid>
 		</h:form>
 	</ui:define>
 </ui:composition>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
