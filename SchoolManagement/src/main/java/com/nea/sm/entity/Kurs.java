@@ -15,7 +15,6 @@ import javax.persistence.TemporalType;
 
 import lombok.Data;
 
-
 @Entity
 @Table(name = "kurs")
 @Data
@@ -23,27 +22,26 @@ public class Kurs {
 
 	@Id
 	@SequenceGenerator(name = "seq_kurs", allocationSize = 1, sequenceName = "seq_kurs")
-    @GeneratedValue(generator = "seq_kurs", strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(generator = "seq_kurs", strategy = GenerationType.SEQUENCE)
 	private Long id;
-	
+
 	@Column(name = "ad")
-    private String ad;
-	
+	private String ad;
+
 	@Column(name = "baslama_tarihi")
 	@Temporal(TemporalType.DATE)
-    private Date baslamaTarihi;
-	
+	private Date baslamaTarihi;
+
 	@Column(name = "fiyat")
-    private BigDecimal fiyat; 
-	
-	
-	 @Override
-	    public boolean equals(Object obj) {
-	    	if(obj instanceof Kurs){
-	    		if(((Kurs)obj).getId().equals(this.id)){
-	    			return true;
-	    		}
-	    	}
-	    	return false;
-	    }
+	private BigDecimal fiyat;
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Kurs) {
+			if (((Kurs) obj).getId().equals(this.id)) {
+				return true;
+			}
+		}
+		return false;
+	}
 }

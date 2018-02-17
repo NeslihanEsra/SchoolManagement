@@ -117,7 +117,5 @@ public class GrupController implements Serializable{
 		List<Ogretmen> list = ogretmenRepository.getByName(query);
 		return list;
 	}
-	
-	
-	
+
 }

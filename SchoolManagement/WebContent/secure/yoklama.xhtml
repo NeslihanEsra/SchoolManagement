@@ -1,0 +1,81 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/content/layout/template.xhtml">
+	<ui:define name="pageContent">
+		<h:form id="frmYoklama">
+			<style>
+			.ui-selectonemenu .ui-selectonemenu-trigger{
+				width:23px !important;
+				padding:3px !important;
+			}
+			</style>
+			
+			<p:panelGrid columns="2" style="width:100%">
+				<p:outputLabel value="Grup bilgisini seçiniz:" />
+				<p:selectOneMenu value="#{yoklamaController.yoklama.grup}" effect="blind" converter="#{grupConverter}">
+					<f:selectItems value="#{yoklamaController.grupList}" var="grup" itemLabel="#{grup.ad}" itemValue="#{grup.id}"/>
+			    </p:selectOneMenu>
+			       		 
+			    <p:outputLabel value="Yoklama tarihini seçiniz:" /> 
+			    <p:calendar id="clndrTarih" value="#{yoklamaController.yoklama.yoklamaTarihi}" showOn="button" pattern="dd/MM/yyyy" />
+			       	 
+			    <p:outputLabel value="İşlenen konu"/> 
+			    <p:inputText value="#{yoklamaController.yoklama.islenenKonu}"/>
+
+		       	<p:commandButton value="Yoklama Getir" update="ogrenciSecim" actionListener="#{yoklamaController.yoklamaGetir}" />
+		       	<p:commandButton value="Yoklamaları Listele" update="tblYoklama" actionListener="#{yoklamaController.yoklamaListesiniGetir}" />
+			</p:panelGrid>
+		
+			<p:panelGrid value="Yoklama Form" id="pnlYoklamaFormu" widgetVar="pnlYoklamaFormu" >
+				<h3>Öğrenciler</h3>
+			    <p:selectManyCheckbox id="ogrenciSecim" widgetVar="ogrenciSecim" value="#{yoklamaController.gelenOgrencilerList}" columns="3">
+			        <f:selectItems value="#{yoklamaController.ogrenciGrupList}" var="ogrGrp" itemLabel="#{ogrGrp.ogrenci.adSoyad}" itemValue="#{ogrGrp.ogrenci.id}" />
+			    </p:selectManyCheckbox>
+       			<p:commandButton value="Yoklama Kaydet" update="@form" actionListener="#{yoklamaController.yoklamaKaydet}" />
+			</p:panelGrid>
+			
+			<p:panelGrid value="Yoklama Liste" id="pnlYoklamaListe" widgetVar="pnlYoklamaListe" >
+				<h3>Yoklamalar</h3>
+				<p:dataTable var="yoklama" id="tblYoklama" widgetVar="tblYoklama" value="#{yoklamaController.yoklamaListesiniGetir}" reflow="true">
+					<p:column headerText="Grup Adı">
+						<h:outputText value="#{yoklama.grup.ad}" />
+					</p:column>
+					
+					<p:column headerText="İşlenen Konu">
+						<h:outputText value="#{yoklama.islenenKonu}" />
+					</p:column>
+					
+					<p:column headerText="Yoklama Tarihi">
+						<h:outputText value="#{yoklama.yoklamaTarihi}" />
+					</p:column>
+				</p:dataTable>
+			</p:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -4,99 +4,98 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	template="/content/layout/template.xhtml">
+	
 	<ui:define name="pageContent" >
-	
-<h:form id="frmKullanici">
-	<style>
-		.ui-growl {
-		z-index:9999 !important;
-		}
-	</style>
-
-	<p:growl id="growl" showDetail="true" sticky="true" autoUpdate="true" />
-
-	<p:dataTable var="kullanici" id="tblKullanici" widgetVar="tblKullanici" value="#{kullaniciController.lazyDataModel}" 
-	reflow="true" paginator="true" rows="5" lazy="true" 
-	paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-	rowsPerPageTemplate="5,10,15" >
-	
-		<p:column headerText="Id">
-			<h:outputText value="#{kullanici.id}" />
-		</p:column>
-
-		<p:column headerText="Ad">
-			<h:outputText value="#{kullanici.ad}" />
-		</p:column>
-
-		<p:column headerText="Soyad">
-			<h:outputText value="#{kullanici.soyad}" />
-		</p:column>
-
-		<p:column headerText="Kullanici Adı">
-			<h:outputText value="#{kullanici.kullaniciAdi}" />
-		</p:column>
+		<h:form id="frmKullanici">
+			<style>
+				.ui-growl {
+				z-index:9999 !important;
+				}
+			</style>
 		
-		<p:column headerText="Üyelik Tarihi">
-			<h:outputText value="#{kullanici.uyelikTarihi}" >
-				<f:convertDateTime pattern="dd-MM-yyyy" />
-			</h:outputText>
-		</p:column>
+			<p:growl id="growl" showDetail="true" sticky="true" autoUpdate="true" />
 		
-		<p:column headerText="Eposta">
-			<h:outputText value="#{kullanici.eposta}" />
-		</p:column>
-		
-		<p:column headerText="Telefon">
-			<h:outputText value="#{kullanici.tel}" />
-		</p:column>
-		
-		<p:column headerText="İşlemler" >
-			<p:commandButton icon="ui-icon-trash" actionListener="#{kullaniciController.kullaniciSil(kullanici.id)}" update="tblKullanici">
-				<p:confirm header="Silme Onay" message="Kaydı silmek istediğinizden emin misiniz?" icon="ui-icon-alert" />
-			</p:commandButton>
-			<p:commandButton icon="ui-icon-pencil" update=":frmKullanici:dlgKullanici" oncomplete="PF('dlgKullanici').show();" actionListener="#{kullaniciController.kullaniciyiGüncelle(kullanici.id)}"></p:commandButton>
-			
-			<!-- silme modal -->
-			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-		        <p:commandButton value="Evet" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-		        <p:commandButton value="Hayır" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-    		</p:confirmDialog>
-		</p:column>
-		
-		<f:facet name="footer">
-			<!-- 'Yeni' butonu  -->
-			<p:commandButton icon="ui-icon-plus" value="Yeni" update=":frmKullanici:dlgKullanici" oncomplete="PF('dlgKullanici').show();" actionListener="#{kullaniciController.yenile}" />
-		</f:facet>
-	</p:dataTable>
+			<p:dataTable var="kullanici" id="tblKullanici" widgetVar="tblKullanici" value="#{kullaniciController.lazyDataModel}" 
+			reflow="true" paginator="true" rows="5" lazy="true" 
+			paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+			rowsPerPageTemplate="5,10,15" >
 
-	<p:dialog header="Kullanıcı Bilgileri" widgetVar="dlgKullanici" id="dlgKullanici" modal="true" resizable="false" >
-		<p:panelGrid columns="2">	
-			<p:outputLabel value="Ad" />
-			<p:inputText  value="#{kullaniciController.kullanici.ad}" />
-			
-			<p:outputLabel value="Soyad" />
-			<p:inputText  value="#{kullaniciController.kullanici.soyad}" />
-			
-			<p:outputLabel value="Kullanıcı adı" />
-			<p:inputText value="#{kullaniciController.kullanici.kullaniciAdi}" />
-			
-			<p:outputLabel value="Şifre" />
-			<p:password  value="#{kullaniciController.kullanici.sifre}" />
-        	
-        	<p:outputLabel value="Üyelik Tarihi" />
-        	<p:calendar value="#{kullaniciController.kullanici.uyelikTarihi}" pattern="dd-MM-yyyy" />
-
-			<p:outputLabel value="Eposta" />
-			<p:inputText  value="#{kullaniciController.kullanici.eposta}" />
-			
-			<p:outputLabel value="Telefon" />
-        	<p:inputMask value="#{kullaniciController.kullanici.tel}" mask="(999)999-9999"/>
-						
-			<p:commandButton value="İptal" type="button" onclick="PF('dlgKullanici').hide();" />
-			<p:commandButton value="Kaydet" update="dlgKullanici tblKullanici" oncomplete="PF('dlgKullanici').hide();" actionListener="#{kullaniciController.kullaniciKaydet}"  />
-		</p:panelGrid>
-	</p:dialog>
-
-</h:form>
-</ui:define>
+				<p:column headerText="Id">
+					<h:outputText value="#{kullanici.id}" />
+				</p:column>
+		
+				<p:column headerText="Ad">
+					<h:outputText value="#{kullanici.ad}" />
+				</p:column>
+		
+				<p:column headerText="Soyad">
+					<h:outputText value="#{kullanici.soyad}" />
+				</p:column>
+		
+				<p:column headerText="Kullanici Adı">
+					<h:outputText value="#{kullanici.kullaniciAdi}" />
+				</p:column>
+				
+				<p:column headerText="Üyelik Tarihi">
+					<h:outputText value="#{kullanici.uyelikTarihi}" >
+						<f:convertDateTime pattern="dd-MM-yyyy" />
+					</h:outputText>
+				</p:column>
+				
+				<p:column headerText="Eposta">
+					<h:outputText value="#{kullanici.eposta}" />
+				</p:column>
+				
+				<p:column headerText="Telefon">
+					<h:outputText value="#{kullanici.tel}" />
+				</p:column>
+				
+				<p:column headerText="İşlemler" >
+					<p:commandButton icon="ui-icon-trash" actionListener="#{kullaniciController.kullaniciSil(kullanici.id)}" update="tblKullanici">
+						<p:confirm header="Silme Onay" message="Kaydı silmek istediğinizden emin misiniz?" icon="ui-icon-alert" />
+					</p:commandButton>
+					<p:commandButton icon="ui-icon-pencil" update=":frmKullanici:dlgKullanici" oncomplete="PF('dlgKullanici').show();" actionListener="#{kullaniciController.kullaniciyiGüncelle(kullanici.id)}"/>
+					
+					<!-- silme modal -->
+					<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+				        <p:commandButton value="Evet" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+				        <p:commandButton value="Hayır" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+		    		</p:confirmDialog>
+				</p:column>
+				
+				<!-- 'Yeni' butonu  -->
+				<f:facet name="footer">
+					<p:commandButton icon="ui-icon-plus" value="Yeni" update=":frmKullanici:dlgKullanici" oncomplete="PF('dlgKullanici').show();" actionListener="#{kullaniciController.yenile}" />
+				</f:facet>
+			</p:dataTable>
+		
+			<p:dialog header="Kullanıcı Bilgileri" widgetVar="dlgKullanici" id="dlgKullanici" modal="true" resizable="false" >
+				<p:panelGrid columns="2">	
+					<p:outputLabel value="Ad" />
+					<p:inputText  value="#{kullaniciController.kullanici.ad}" />
+					
+					<p:outputLabel value="Soyad" />
+					<p:inputText  value="#{kullaniciController.kullanici.soyad}" />
+					
+					<p:outputLabel value="Kullanıcı adı" />
+					<p:inputText value="#{kullaniciController.kullanici.kullaniciAdi}" />
+					
+					<p:outputLabel value="Şifre" />
+					<p:password  value="#{kullaniciController.kullanici.sifre}" />
+		        	
+		        	<p:outputLabel value="Üyelik Tarihi" />
+		        	<p:calendar value="#{kullaniciController.kullanici.uyelikTarihi}" pattern="dd-MM-yyyy" />
+		
+					<p:outputLabel value="Eposta" />
+					<p:inputText  value="#{kullaniciController.kullanici.eposta}" />
+					
+					<p:outputLabel value="Telefon" />
+		        	<p:inputMask value="#{kullaniciController.kullanici.tel}" mask="(999)999-9999"/>
+								
+					<p:commandButton value="İptal" type="button" onclick="PF('dlgKullanici').hide();" />
+					<p:commandButton value="Kaydet" update="dlgKullanici tblKullanici" oncomplete="PF('dlgKullanici').hide();" actionListener="#{kullaniciController.kullaniciKaydet}"  />
+				</p:panelGrid>
+			</p:dialog>
+		</h:form>
+	</ui:define>
 </ui:composition>

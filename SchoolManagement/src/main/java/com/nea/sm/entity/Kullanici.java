@@ -59,4 +59,15 @@ public class Kullanici extends BaseEntity {
 		return this.ad + " " + this.soyad;
 	}
 	
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Kullanici) {
+			if (((Kullanici) obj).getId().equals(this.id)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 }  

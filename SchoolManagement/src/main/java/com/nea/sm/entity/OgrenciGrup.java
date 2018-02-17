@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import lombok.Data;
 
@@ -38,7 +40,20 @@ public class OgrenciGrup {
 	private BigDecimal ucret;
 	
 	@Column(name="kayýt_tarihi")
+	@Temporal(TemporalType.DATE)
 	private Date kayýtTarihi;
+	
+	
+	@Override
+    public boolean equals(Object obj) {
+    	if(obj instanceof OgrenciGrup){
+    		if(((OgrenciGrup)obj).getId().equals(this.id)){
+    			return true;
+    		}
+    	}
+    	return false;
+    }
+	
 	
 
 }

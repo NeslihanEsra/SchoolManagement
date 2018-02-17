@@ -13,7 +13,7 @@ import javax.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Table(name="yoklama_detay")
+@Table(name = "yoklama_detay")
 @Data
 public class YoklamaDetay {
 
@@ -22,15 +22,25 @@ public class YoklamaDetay {
 	@SequenceGenerator(name = "seq_yklm", allocationSize = 1, sequenceName = "seq_yklm")
 	@GeneratedValue(generator = "seq_yklm", strategy = GenerationType.SEQUENCE)
 	private Long id;
-	
+
 	@ManyToOne
-	@JoinColumn(name="yoklama_id")
+	@JoinColumn(name = "yoklama_id")
 	private Yoklama yoklama;
-	
+
 	@ManyToOne
-	@JoinColumn(name="ogrenci_id")
+	@JoinColumn(name = "ogrenci_id")
 	private Ogrenci ogrenci;
-	
-	@Column(name="geldi_mi")
+
+	@Column(name = "geldi_mi")
 	private Boolean geldiMi;
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof YoklamaDetay) {
+			if (((YoklamaDetay) obj).getId().equals(this.id)) {
+				return true;
+			}
+		}
+		return false;
+	}
 }

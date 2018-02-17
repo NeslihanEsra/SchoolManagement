@@ -16,27 +16,26 @@ import lombok.Data;
 public class Salon {
 	@Id
 	@SequenceGenerator(name = "seq_salon", allocationSize = 1, sequenceName = "seq_salon")
-    @GeneratedValue(generator = "seq_salon", strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(generator = "seq_salon", strategy = GenerationType.SEQUENCE)
 	private Long id;
-	
+
 	@Column(name = "ad")
-    private String ad;
-	
+	private String ad;
+
 	@Column(name = "kod")
-    private String kod;
-    
+	private String kod;
+
 	@Column(name = "kapasite")
 	private int kapasite;
-	
-	
+
 	@Override
-    public boolean equals(Object obj) {
-    	if(obj instanceof Salon){
-    		if(((Salon)obj).getId().equals(this.id)){
-    			return true;
-    		}
-    	}
-    	return false;
-    }
+	public boolean equals(Object obj) {
+		if (obj instanceof Salon) {
+			if (((Salon) obj).getId().equals(this.id)) {
+				return true;
+			}
+		}
+		return false;
+	}
 
 }

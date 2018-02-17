@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import lombok.Data;
 
@@ -36,5 +38,17 @@ public class Yoklama {
 	private String islenenKonu;
 	
 	@Column(name="yoklama_tarihi")
+	@Temporal(TemporalType.DATE)
 	private Date yoklamaTarihi;
+	
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Yoklama) {
+			if (((Yoklama) obj).getId().equals(this.id)) {
+				return true;
+			}
+		}
+		return false;
+	}
 }

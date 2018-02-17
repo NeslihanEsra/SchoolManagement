@@ -24,48 +24,44 @@ public class Ogretmen {
 
 	@Id
 	@SequenceGenerator(name = "seq_ogretmen", allocationSize = 1, sequenceName = "seq_ogretmen")
-    @GeneratedValue(generator = "seq_ogretmen", strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(generator = "seq_ogretmen", strategy = GenerationType.SEQUENCE)
 	private Long id;
-	
+
 	@Column(name = "ad")
-    private String ad;
+	private String ad;
 
 	@Column(name = "soyad")
 	private String soyad;
-	
+
 	@Column(name = "adres")
-    private String adres;
-	
+	private String adres;
+
 	@Column(name = "tel")
-    private String tel;
-	
+	private String tel;
+
 	@Column(name = "eposta")
-    private String eposta;
+	private String eposta;
 
 	@Column(name = "maas")
 	private BigDecimal maas;
-	
+
 	@Column(name = "kayit_tarihi")
 	@Temporal(TemporalType.DATE)
-    private Date kayitTarihi;
-	
-	private String adSoyad;
-	
+	private Date kayitTarihi;
+
+
 	@Transient
-	public String getAdSoyad(){
+	public String getAdSoyad() {
 		return this.ad + " " + this.soyad;
 	}
-	
-	
 
-	
-	 @Override
-	    public boolean equals(Object obj) {
-	    	if(obj instanceof Ogretmen){
-	    		if(((Ogretmen)obj).getId().equals(this.id)){
-	    			return true;
-	    		}
-	    	}
-	    	return false;
-	    }
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Ogretmen) {
+			if (((Ogretmen) obj).getId().equals(this.id)) {
+				return true;
+			}
+		}
+		return false;
+	}
 }

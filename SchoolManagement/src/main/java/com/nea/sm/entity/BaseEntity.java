@@ -5,7 +5,10 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 
+import lombok.Data;
+
 @MappedSuperclass
+@Data
 public class BaseEntity {
 
 	@Column(name = "ekleyen", length = 20)
@@ -23,48 +26,5 @@ public class BaseEntity {
 	@Column(name = "kayýt_durumu")
 	private Boolean kayitDurumu;
 
-	public String getEkleyen() {
-		return ekleyen;
-	}
-
-	public void setEkleyen(String ekleyen) {
-		this.ekleyen = ekleyen;
-	}
-
-	public String getGuncelleyen() {
-		return guncelleyen;
-	}
-
-	public void setGuncelleyen(String guncelleyen) {
-		this.guncelleyen = guncelleyen;
-	}
-
-	public Date getEklemeTarihi() {
-		return eklemeTarihi;
-	}
-
-	public void setEklemeTarihi(Date eklemeTarihi) {
-		this.eklemeTarihi = eklemeTarihi;
-	}
-
-	public Date getGuncellemeTarihi() {
-		return guncellemeTarihi;
-	}
-
-	public void setGuncellemeTarihi(Date guncellemeTarihi) {
-		this.guncellemeTarihi = guncellemeTarihi;
-	}
-
-	public Boolean getKayitDurumu() {
-		return kayitDurumu;
-	}
-
-	public void setKayitDurumu(Boolean kayitDurumu) {
-		this.kayitDurumu = kayitDurumu;
-	}
-
-	
-
-	
 
 }

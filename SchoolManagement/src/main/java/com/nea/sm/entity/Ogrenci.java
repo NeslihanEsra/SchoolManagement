@@ -11,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
 import lombok.Data;
@@ -42,6 +44,7 @@ public class Ogrenci {
 	private String eposta;
 	
 	@Column(name="kayit_tarihi")
+	@Temporal(TemporalType.DATE)
 	private Date kayitTarihi;
 	
 	@Enumerated
@@ -52,4 +55,15 @@ public class Ogrenci {
 	public String getAdSoyad(){
 		return this.ad + " " + this.soyad;
 	}
+	
+	@Override
+    public boolean equals(Object obj) {
+    	if(obj instanceof Ogrenci){
+    		if(((Ogrenci)obj).getId().equals(this.id)){
+    			return true;
+    		}
+    	}
+    	return false;
+    }
+	
 }
