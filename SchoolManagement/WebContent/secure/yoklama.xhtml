@@ -17,7 +17,7 @@
 				<p:outputLabel value="Grup bilgisini seçiniz:" />
 				<p:selectOneMenu value="#{yoklamaController.yoklama.grup}" effect="blind" converter="#{grupConverter}" >
 					<f:selectItems value="#{yoklamaController.grupList}" var="grup" itemLabel="#{grup.ad}" itemValue="#{grup}"/>
-					<p:ajax listener="#{yoklamaController.oncekiYoklamariListele}" update="tblYoklamaListesi" />
+<!-- 					<p:ajax listener="#{yoklamaController.oncekiYoklamariListele}" update="tblYoklamaListesi" /> -->
 			    </p:selectOneMenu>
 			       		 
 			    <p:outputLabel value="Yoklama tarihini seçiniz:" /> 
@@ -28,7 +28,7 @@
 					
 				<f:facet name="footer">	
 			       	<p:commandButton value="Yoklama Getir" update="dlgYoklamaFormu ogrenciSecim" actionListener="#{yoklamaController.yoklamaGetir}" oncomplete="PF('dlgYoklamaFormu').show();"/>
-			       	<p:commandButton value="Yoklamaları Listele" update=":frmYoklama:dlgYoklamaListesi :frmYoklama:tblYoklamaListesi"  oncomplete="PF('dlgYoklamaListesi').show();"/>
+			       	<p:commandButton value="Yoklamaları Listele" update="dlgYoklamaListesi tblYoklamaListesi"  actionListener="#{yoklamaController.oncekiYoklamariListele}" oncomplete="PF('dlgYoklamaListesi').show();"/>
 				</f:facet>
 			</p:panelGrid>
 		
@@ -36,6 +36,7 @@
 			    <p:selectManyCheckbox id="ogrenciSecim" widgetVar="ogrenciSecim" value="#{yoklamaController.gelenOgrencilerList}">
 			        <f:selectItems value="#{yoklamaController.ogrenciGrupList}" var="ogrGrp" itemLabel="#{ogrGrp.ogrenci.adSoyad}" itemValue="#{ogrGrp.ogrenci.id}" />
 			    </p:selectManyCheckbox>
+			    
 			    <f:facet name="footer">	
        				<p:commandButton value="Yoklama Kaydet" update="@form" actionListener="#{yoklamaController.yoklamaKaydet}" oncomplete="PF('dlgYoklamaFormu').hide();"/>
 				</f:facet>

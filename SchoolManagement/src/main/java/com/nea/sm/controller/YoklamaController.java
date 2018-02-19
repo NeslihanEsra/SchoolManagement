@@ -91,14 +91,13 @@ public class YoklamaController implements Serializable{
 		grupList = grupRespository.findAll();
 	}
 	
-	public void oncekiYoklamariListele() {
-		System.out.println("önceki yoklamalar listelendi");
+	public List<Yoklama> oncekiYoklamariListele() {
+		System.out.println("önceki yoklamalar listeleniyor");
 		if(yoklama.getGrup().getId() !=null && !yoklama.getGrup().getId().equals("")){
 			oncekiYoklamaList = yoklamaRepository.getByGrupId(yoklama.getGrup().getId());
+			return oncekiYoklamaList;
 		}
-	}		
-
-
-
+		return null;
+	}	
 
 }
