@@ -44,25 +44,27 @@ public class YoklamaController implements Serializable{
 	private OgrenciGrupRepository ogrenciGrupRepository;
 	
 	@Getter @Setter
-	private List<Grup> grupList;
-	
-	@Getter @Setter
 	private Yoklama yoklama;
-	
+
 	@Getter @Setter
-	private YoklamaDetay yoklamaDetay;
+	private List<Grup> grupList;
 	
 	@Getter @Setter
 	private List<OgrenciGrup> ogrenciGrupList;
 	
 	@Getter @Setter
+	private List<Yoklama> yoklamaList;
+	
+	@Getter @Setter
 	private List<String> gelenOgrencilerList;
+	
+	@Getter @Setter
+	private List<Yoklama> oncekiYoklamaList;
 		
 	@PostConstruct
 	public void init() {
 		grupList = grupRespository.findAll();
 		yoklama = new Yoklama();
-		yoklamaDetay = new YoklamaDetay();
 	}
 	
 	public void yoklamaGetir() {
@@ -89,10 +91,14 @@ public class YoklamaController implements Serializable{
 		grupList = grupRespository.findAll();
 	}
 	
-	public List<Yoklama> yoklamaListesiniGetir() {
-		List<Yoklama> liste = yoklamaRepository.getByGrupId(yoklama.getGrup().getId());
-		return liste;
-	}
-	
-	
+	public void oncekiYoklamariListele() {
+		System.out.println("önceki yoklamalar listelendi");
+		if(yoklama.getGrup().getId() !=null && !yoklama.getGrup().getId().equals("")){
+			oncekiYoklamaList = yoklamaRepository.getByGrupId(yoklama.getGrup().getId());
+		}
+	}		
+
+
+
+
 }

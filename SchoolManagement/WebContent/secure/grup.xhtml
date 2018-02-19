@@ -58,7 +58,7 @@
 					<p:commandButton icon="ui-icon-trash" actionListener="#{grupController.grupSil(grup.id)}" update="tblGrup">
 						<p:confirm header="Silme Onay" message="Grubu silmek istediğinizden emin misiniz?" icon="ui-icon-alert" />
 					</p:commandButton>	
-					<p:commandButton icon="ui-icon-pencil" update=":frmGrup:dlgGrup" actionListener="#{grupController.grupGuncelle(grup.id)}" oncomplete="PF('dlgGrup').show();" />
+					<p:commandButton icon="ui-icon-pencil" actionListener="#{grupController.grupGuncelle(grup.id)}" update=":frmGrup:dlgGrup" oncomplete="PF('dlgGrup').show();" />
 					
 					<!-- silme modal -->
 					<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
@@ -84,17 +84,16 @@
 					<p:outputLabel value="Salon Adı" />
 					<p:selectOneMenu value="#{grupController.grup.salon}" effect="blind" converter="#{salonConverter}" >
 			            <f:selectItems value="#{grupController.salonList}" var="salon" itemLabel="#{salon.ad}/#{salon.kod}" itemValue="#{salon}"/>
-		       		 </p:selectOneMenu>
+		       		</p:selectOneMenu>
 		       		 
 		       		<p:outputLabel value="Kurs Adı" />
 					<p:selectOneMenu value="#{grupController.grup.kurs}" effect="blind" converter="#{kursConverter}">
 			            <f:selectItems value="#{grupController.kursList}" var="kurs" itemLabel="#{kurs.ad}" itemValue="#{kurs}"/>
-		       		 </p:selectOneMenu>
+		       		</p:selectOneMenu>
 		       		 
 		       		<p:outputLabel value="Öğretmen Adı" />
-					<p:autoComplete value="#{grupController.grup.ogretmen}" completeMethod="#{grupController.ogretmenAutoComplete}" effect="blind" style="width:185px!important;"
-			                        var="ogretmen" itemLabel="#{ogretmen.adSoyad}" itemValue="#{ogretmen}" converter="#{ogretmenConverter}" forceSelection="true">
-			            <p:column style="width:10%">
+					<p:autoComplete value="#{grupController.grup.ogretmen}" completeMethod="#{grupController.ogretmenAutoComplete}" effect="blind" var="ogretmen" itemLabel="#{ogretmen.adSoyad}" itemValue="#{ogretmen}" converter="#{ogretmenConverter}" forceSelection="true">
+			            <p:column>
 			                <h:outputText value="#{ogretmen.ad} #{ogretmen.soyad}"  />
 			            </p:column>
 			        </p:autoComplete>
