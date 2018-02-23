@@ -1,0 +1,41 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/content/layout/template.xhtml">
+	
+	<ui:define name="pageContent" >
+		<h:form id="frmRefrofit">
+		
+			<p:panelGrid columns="2">
+				<p:outputLabel value="Kullanıcı adı:"/>
+				<p:inputText > </p:inputText>
+				<p:commandButton value="Getir" actionListener="#{retroController.kulaniciGetir}"></p:commandButton>
+			</p:panelGrid>
+			
+			<h3 style="margin-top:0">Kullanıcı Bilgileri</h3>
+		    <p:tabView>
+		        <p:tab title="Info">
+		            <h:panelGrid columns="2" cellpadding="10">
+		                <p:graphicImage rendered="#{retroController.kulanici != null}" name="#{retroController.kulanici.avatar_url}" />
+		                <p:outputLabel value="#{retroController.kulanici.name}"></p:outputLabel>
+		                <p:outputLabel value="#{retroController.kulanici.location}"></p:outputLabel>
+		            </h:panelGrid>
+		        </p:tab>
+		        <p:tab title="Stars">
+		            <h:panelGrid columns="2" cellpadding="10">
+		                <p:graphicImage name="demo/images/godfather/godfather2.jpg" />
+		            </h:panelGrid>
+		        </p:tab>
+		        <p:tab title="Repository">
+		            <h:panelGrid columns="2" cellpadding="10">
+		                <p:graphicImage name="demo/images/godfather/godfather3.jpg" />
+		            </h:panelGrid>
+		        </p:tab>
+		    </p:tabView>
+			
+			
+		</h:form>
+	</ui:define>
+</ui:composition>
