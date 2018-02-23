@@ -57,6 +57,7 @@
 	<!-- repository lerin nerede olduğu tanıtılır -->
 	<jpa:repositories base-package="com.nea.sm.repository" />
 
+	<!-- web servisi 8081 numaralı porttan dışarıya açar -->
 	<bean class="org.springframework.remoting.jaxws.SimpleJaxWsServiceExporter">
 		<property name="baseAddress" value="http://localhost:8081/" />
 	</bean>
