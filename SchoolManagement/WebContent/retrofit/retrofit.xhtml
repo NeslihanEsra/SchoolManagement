@@ -10,27 +10,34 @@
 		
 			<p:panelGrid columns="2">
 				<p:outputLabel value="Kullanıcı adı:"/>
-				<p:inputText > </p:inputText>
-				<p:commandButton value="Getir" actionListener="#{retroController.kulaniciGetir}"></p:commandButton>
+				<p:inputText value="#{retroController.username}"/>
+				<p:commandButton value="Getir" actionListener="#{retroController.kulaniciGetir}" update=":frmRefrofit:tbUser"/>
 			</p:panelGrid>
 			
 			<h3 style="margin-top:0">Kullanıcı Bilgileri</h3>
-		    <p:tabView>
+		    <p:tabView id="tbUser" widgetVar="tbUser">
 		        <p:tab title="Info">
-		            <h:panelGrid columns="2" cellpadding="10">
-		                <p:graphicImage rendered="#{retroController.kulanici != null}" name="#{retroController.kulanici.avatar_url}" />
-		                <p:outputLabel value="#{retroController.kulanici.name}"></p:outputLabel>
-		                <p:outputLabel value="#{retroController.kulanici.location}"></p:outputLabel>
-		            </h:panelGrid>
-		        </p:tab>
-		        <p:tab title="Stars">
-		            <h:panelGrid columns="2" cellpadding="10">
-		                <p:graphicImage name="demo/images/godfather/godfather2.jpg" />
+		            <h:panelGrid columns="2" cellpadding="50">
+		                <p:outputLabel value="User Avatar:"/>
+		                <p:graphicImage value="#{retroController.user.avatar_url}"/>
+		                <p:outputLabel value="User Name:"/>
+		                <p:outputLabel value="#{retroController.user.name}"></p:outputLabel>
+		                <p:outputLabel value="User Login:"/>
+		                <p:outputLabel value="#{retroController.user.login}"></p:outputLabel>
+		                <p:outputLabel value="User Email:"/>
+		                <p:outputLabel value="#{retroController.user.email}"></p:outputLabel>
+		                <p:outputLabel value="User Location:"/>
+		                <p:outputLabel value="#{retroController.user.location}"></p:outputLabel>
 		            </h:panelGrid>
 		        </p:tab>
 		        <p:tab title="Repository">
 		            <h:panelGrid columns="2" cellpadding="10">
-		                <p:graphicImage name="demo/images/godfather/godfather3.jpg" />
+		                <ui:repeat var="repo" value="#{retroController.repos}">
+		                	<ul class="list-group">
+		                		<li class="list-group-item">Repo name:</li>
+							 	<li class="list-group-item">#{repo.name}</li>
+							</ul>
+		                </ui:repeat>
 		            </h:panelGrid>
 		        </p:tab>
 		    </p:tabView>

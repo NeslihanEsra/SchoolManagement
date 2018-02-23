@@ -17,7 +17,7 @@ public class GithubConfig {
 
 	public static final String API_URL = "https://api.github.com";
 	
-	private GithubOperations github;
+	private GithubOperations githubOperations;
 	
 	@PostConstruct
 	private void init() {
@@ -29,15 +29,15 @@ public class GithubConfig {
 				.addConverterFactory(GsonConverterFactory.create())
 				.baseUrl(API_URL)
 				.build();
-		github = retrofit.create(GithubOperations.class);
+		githubOperations = retrofit.create(GithubOperations.class);
 	}
 	
 	public User getUser(String username) throws Exception{
-		return github.getUserByName(username).execute().body();
+		return githubOperations.getUserByName(username).execute().body();
 	}
 	
 	public List<Repo> getRepo(String username) throws Exception {
-		return github.getReposByUsername(username).execute().body();
+		return githubOperations.getReposByUsername(username).execute().body();
 	}
 	
 	

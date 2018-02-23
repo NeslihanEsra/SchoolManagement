@@ -44,7 +44,7 @@
 			</props>
 		</property>
 		<!-- entity lerin olduğu package tanıtılır -->
-		<property name="packagesToScan" value="com.nea" />
+		<property name="packagesToScan" value="com.nea.sm.web" />
 		<property name="sharedCacheMode" value="ENABLE_SELECTIVE" />
 		<property name="validationMode" value="NONE" />
 	</bean>
@@ -55,7 +55,7 @@
 	<tx:annotation-driven />
 
 	<!-- repository lerin nerede olduğu tanıtılır -->
-	<jpa:repositories base-package="com.nea.sm.repository" />
+	<jpa:repositories base-package="com.nea.sm.web.repository" />
 
 	<!-- web servisi 8081 numaralı porttan dışarıya açar -->
 	<bean class="org.springframework.remoting.jaxws.SimpleJaxWsServiceExporter">

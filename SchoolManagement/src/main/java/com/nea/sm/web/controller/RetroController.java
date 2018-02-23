@@ -34,7 +34,6 @@ public class RetroController {
 
 	@PostConstruct
 	private void init() {
-
 	}
 
 	public void kulaniciGetir() {
