@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -44,13 +45,13 @@ public class Kullanici extends BaseEntity {
 	private String eposta;
 	
 	@Column(name = "uyelik_tarihi")
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date uyelikTarihi;
 	
 	@Column(name = "tel", length=10)	
 	private String tel;
 
-	@Enumerated
+	@Enumerated(EnumType.STRING)
 	@Column(name = "rol")	
 	private EnumKullaniciRol rol;
 	

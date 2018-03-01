@@ -11,11 +11,15 @@
 				.ui-growl {
 				z-index:9999 !important;
 				}
+				.ui-selectonemenu .ui-selectonemenu-trigger{
+				width:23px !important;
+				padding:3px !important;
+				}
 			</style>
 		
 			<p:growl id="growl" showDetail="true" sticky="true" autoUpdate="true" />
 		
-			<p:dataTable var="kullanici" id="tblKullanici" widgetVar="tblKullanici" value="#{kullaniciController.lazyDataModel}" 
+			<p:dataTable id="tblKullanici" widgetVar="tblKullanici" var="kullanici" value="#{kullaniciController.lazyDataModel}" 
 			reflow="true" paginator="true" rows="5" lazy="true" 
 			paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 			rowsPerPageTemplate="5,10,15" >
@@ -34,6 +38,10 @@
 		
 				<p:column headerText="Kullanici Adı">
 					<h:outputText value="#{kullanici.kullaniciAdi}" />
+				</p:column>
+				
+				<p:column headerText="Kullanici Rolü">
+					<h:outputText value="#{kullanici.rol.rolAd}" />
 				</p:column>
 				
 				<p:column headerText="Üyelik Tarihi">
@@ -80,20 +88,24 @@
 					<p:outputLabel value="Kullanıcı adı" />
 					<p:inputText value="#{kullaniciController.kullanici.kullaniciAdi}" />
 					
+					<p:outputLabel value="Kullanıcı rolü"/>
+					<p:selectOneMenu value="#{kullaniciController.kullanici.rol}" >
+						<f:selectItems value="#{kullaniciController.rol}" var="rol" itemLabel="#{rol.rolAd}" itemValue="#{rol}" />
+					</p:selectOneMenu>
+					
 					<p:outputLabel value="Şifre" />
 					<p:password  value="#{kullaniciController.kullanici.sifre}" />
 		        	
-		        	<p:outputLabel value="Üyelik Tarihi" />
-		        	<p:calendar value="#{kullaniciController.kullanici.uyelikTarihi}" pattern="dd-MM-yyyy" />
-		
 					<p:outputLabel value="Eposta" />
 					<p:inputText  value="#{kullaniciController.kullanici.eposta}" />
 					
 					<p:outputLabel value="Telefon" />
 		        	<p:inputMask value="#{kullaniciController.kullanici.tel}" mask="(999)999-9999"/>
-								
-					<p:commandButton value="İptal" type="button" onclick="PF('dlgKullanici').hide();" />
-					<p:commandButton value="Kaydet" update="dlgKullanici tblKullanici" oncomplete="PF('dlgKullanici').hide();" actionListener="#{kullaniciController.kullaniciKaydet}"  />
+							
+					<f:facet name="footer">			
+						<p:commandButton value="İptal" type="button" onclick="PF('dlgKullanici').hide();" />
+						<p:commandButton value="Kaydet" update="dlgKullanici tblKullanici" oncomplete="PF('dlgKullanici').hide();" actionListener="#{kullaniciController.kullaniciKaydet}"  />
+					</f:facet>
 				</p:panelGrid>
 			</p:dialog>
 		</h:form>

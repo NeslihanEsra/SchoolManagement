@@ -27,18 +27,43 @@
 				<li class="header">MENÜ</li>
 				<!-- Optionally, you can add icons to the links -->
 				<li class="active"><a href="#"><i class="fa fa-home"></i> <span>Anasayfa</span></a></li>
+				
 				<li><a href="#{request.contextPath}/secure/kullanici.xhtml"><i class="fa fa-user"></i> <span>Kullanıcı İşlemleri</span></a></li>
-				<li><a href="#{request.contextPath}/secure/grup.xhtml"><i class="fa fa-users"></i> <span>Grup İşlemleri</span></a></li>
-				<li><a href="#"><i class="fa fa-user"></i> <span>Yönetim</span></a></li>
+				
 				<li><a href="#{request.contextPath}/secure/yoklama.xhtml"><i class="fa fa-calendar-check-o"></i> <span>Yoklama</span></a></li>
 				
-<!-- 				<li class="treeview"><a href="#"><i class="fa fa-link"></i> -->
-<!-- 					<span>Yoklama</span> <i class="fa fa-angle-left pull-right"></i></a> -->
-<!-- 					<ul class="treeview-menu"> -->
-<!-- 						<li><a href="#{request.contextPath}/secure/yoklama/yoklama.xhtml">Yoklama Al</a></li> -->
-<!-- 						<li><a href="#">Yoklama Formu</a></li> -->
-<!-- 					</ul> -->
-<!-- 				</li> -->
+				<li class="treeview"><a href="#"><i class="fa fa-star-o"></i>
+					<span>Yönetim</span> <i class="fa fa-angle-left pull-right"></i></a>
+					<ul class="treeview-menu">
+						<li><a href="#{request.contextPath}/secure/grup.xhtml">Grup İşlemleri</a></li>
+						<li><a href="#">Kurs İşlemleri</a></li>
+					</ul>
+				</li>
+				
+				<li class="treeview"><a href="#"><i class="fa fa-users"></i>
+					<span>İnsan Kaynakları</span> <i class="fa fa-angle-left pull-right"></i></a>
+					<ul class="treeview-menu">
+						<li><a href="#">Ogretmen İşlemleri</a></li>
+						<li><a href="#">Personel İşlemleri</a></li>
+						<li><a href="#">Öğrenci İşlemleri</a></li>
+					</ul>
+				</li>
+				
+				<li class="treeview"><a href="#"><i class="fa fa-credit-card"></i>
+					<span>Muhasebe</span> <i class="fa fa-angle-left pull-right"></i></a>
+					<ul class="treeview-menu">
+						<li><a href="#">Gelir İşlemleri</a></li>
+						<li><a href="#">Gider İşlemleri</a></li>
+					</ul>
+				</li>
+				
+				<li class="treeview"><a href="#"><i class="fa fa-file-text"></i>
+					<span>Envanter</span> <i class="fa fa-angle-left pull-right"></i></a>
+					<ul class="treeview-menu">
+						<li><a href="#">Envanter İşlemleri</a></li>
+						<li><a href="#">Demirbaş İşlemleri</a></li>
+					</ul>
+				</li>
 			</ul>
 			<!-- /.sidebar-menu -->
 		</section>

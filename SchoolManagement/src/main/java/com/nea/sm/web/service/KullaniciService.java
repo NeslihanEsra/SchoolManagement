@@ -43,6 +43,7 @@ public class KullaniciService {
 			Md5PasswordEncoder encoder = new Md5PasswordEncoder();
 			String md5Sifre = encoder.encodePassword(kullanici.getSifre(), null);
 			kullanici.setSifre(md5Sifre);
+			kullanici.setUyelikTarihi(new Date());
 		}
 		return kullaniciRepository.save(kullanici);
 	}

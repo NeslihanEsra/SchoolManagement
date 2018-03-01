@@ -16,6 +16,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 
+import com.nea.sm.web.entity.EnumKullaniciRol;
 import com.nea.sm.web.entity.Kullanici;
 import com.nea.sm.web.repository.KullaniciRepository;
 import com.nea.sm.web.service.KullaniciService;
@@ -41,6 +42,9 @@ public class KullaniciController implements Serializable{
 	
 	@Getter @Setter
 	private Kullanici kullanici;
+	
+	@Getter @Setter
+	private EnumKullaniciRol rol;
 	
 	@PostConstruct
 	private void init() {
@@ -96,4 +100,9 @@ public class KullaniciController implements Serializable{
 			}
 		};
 	}
+	
+	public EnumKullaniciRol[] getRol() {
+        return EnumKullaniciRol.values();
+    }
+
 }
