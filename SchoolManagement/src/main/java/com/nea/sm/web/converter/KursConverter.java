@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import com.nea.sm.web.entity.Kurs;
+import com.nea.sm.web.entity.YonetimKurs;
 import com.nea.sm.web.repository.KursRepository;
 
 @Controller("kursConverter")
@@ -22,7 +22,7 @@ public class KursConverter implements Converter {
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {
 		if (value != null && value.trim().length() > 0 && !value.equals("null")) {
 			try {
-				Kurs kurs = kursRepository.findOne(new Long(value));
+				YonetimKurs kurs = kursRepository.findOne(new Long(value));
 				return kurs;
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -35,8 +35,8 @@ public class KursConverter implements Converter {
 
 	@Override
 	public String getAsString(FacesContext context, UIComponent component, Object value) {
-		if (value != null && !value.equals("null") && value instanceof Kurs ) {
-			return String.valueOf(((Kurs)value).getId());
+		if (value != null && !value.equals("null") && value instanceof YonetimKurs ) {
+			return String.valueOf(((YonetimKurs)value).getId());
 		} else {
 			return null;
 		}

@@ -11,7 +11,7 @@
 		http://www.springframework.org/schema/context
 		http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 
-	<!-- annotationların nerede oluduğunu belirtme -->
+	<!-- annotationları bulup, anlamlandırır -->
 	<context:component-scan base-package="com.nea.sm" />
 
 	<!-- annotationları anlamlandırma -->

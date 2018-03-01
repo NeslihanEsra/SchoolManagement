@@ -18,7 +18,7 @@ import lombok.Data;
 @Entity
 @Table(name = "kurs")
 @Data
-public class Kurs {
+public class YonetimKurs {
 
 	@Id
 	@SequenceGenerator(name = "seq_kurs", allocationSize = 1, sequenceName = "seq_kurs")
@@ -37,8 +37,8 @@ public class Kurs {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof Kurs) {
-			if (((Kurs) obj).getId().equals(this.id)) {
+		if (obj instanceof YonetimKurs) {
+			if (((YonetimKurs) obj).getId().equals(this.id)) {
 				return true;
 			}
 		}

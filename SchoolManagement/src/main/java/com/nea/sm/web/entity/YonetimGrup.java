@@ -19,7 +19,7 @@ import lombok.Data;
 @Entity
 @Table(name = "grup")
 @Data
-public class Grup {
+public class YonetimGrup {
 
 	@Id
 	@SequenceGenerator(name = "seq_grup", allocationSize = 1, sequenceName = "seq_grup")
@@ -31,18 +31,18 @@ public class Grup {
 	
 	@ManyToOne
     @JoinColumn(name = "kurs_id")
-    private Kurs kurs;
+    private YonetimKurs kurs;
 	
 	@ManyToOne
     @JoinColumn(name = "ogretmen_id")
-    private Ogretmen ogretmen;
+    private IKOgretmen ogretmen;
 
 	@Column(name = "ogrenci_sayisi")
 	private int ogrenciSayisi;
 
 	@ManyToOne
     @JoinColumn(name = "salon_id")
-	private Salon salon;
+	private YonetimSalon salon;
     
     @Column(name = "baslama_tarihi")
     @Temporal(TemporalType.DATE)
@@ -55,8 +55,8 @@ public class Grup {
     
     @Override
     public boolean equals(Object obj) {
-    	if(obj instanceof Grup){
-    		if(((Grup)obj).getId().equals(this.id)){
+    	if(obj instanceof YonetimGrup){
+    		if(((YonetimGrup)obj).getId().equals(this.id)){
     			return true;
     		}
     	}

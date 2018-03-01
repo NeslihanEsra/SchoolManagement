@@ -5,10 +5,10 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.nea.sm.web.entity.Kurs;
+import com.nea.sm.web.entity.YonetimKurs;
 
 @Repository
-public interface KursRepository extends JpaRepository<Kurs, Long>{
+public interface KursRepository extends JpaRepository<YonetimKurs, Long>{
 
-	List<Kurs> getAllByOrderByIdAsc();
+	List<YonetimKurs> getAllByOrderByIdAsc();
 }

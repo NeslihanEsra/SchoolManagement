@@ -24,8 +24,8 @@ import lombok.EqualsAndHashCode;
 public class Kullanici extends BaseEntity {
 	@Id
 	@Column(name = "id")
-	@SequenceGenerator(name = "seq_usr", allocationSize = 1, sequenceName = "seq_usr")
-	@GeneratedValue(generator = "seq_usr", strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(name = "seq_kullanici", allocationSize = 1, sequenceName = "seq_kullanici")
+	@GeneratedValue(generator = "seq_kullanici", strategy = GenerationType.SEQUENCE)
 	private Long id;
 
 	@Column(name = "ad", length = 30)
@@ -52,13 +52,12 @@ public class Kullanici extends BaseEntity {
 
 	@Enumerated
 	@Column(name = "rol")	
-	private KullaniciRol rol;
+	private EnumKullaniciRol rol;
 	
 	@Transient
 	public String getAdSoyad(){
 		return this.ad + " " + this.soyad;
 	}
-	
 	
 	@Override
 	public boolean equals(Object obj) {

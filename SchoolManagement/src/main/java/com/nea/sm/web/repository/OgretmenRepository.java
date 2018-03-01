@@ -7,14 +7,14 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.nea.sm.web.entity.Kullanici;
-import com.nea.sm.web.entity.Ogretmen;
+import com.nea.sm.web.entity.IKOgretmen;
 
 @Repository
-public interface OgretmenRepository extends JpaRepository<Ogretmen, Long> {
+public interface OgretmenRepository extends JpaRepository<IKOgretmen, Long> {
 
-	List<Ogretmen> getAllByOrderByIdAsc();
+	List<IKOgretmen> getAllByOrderByIdAsc();
 
 	@Query(value = "SELECT * FROM ogretmen WHERE ad ilike %?1% or soyad ilike %?1%", nativeQuery = true)
-	List<Ogretmen> getByName(String query);
+	List<IKOgretmen> getByName(String query);
 
 }

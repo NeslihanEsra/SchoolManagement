@@ -13,7 +13,7 @@ import lombok.Data;
 @Entity
 @Table(name = "salon")
 @Data
-public class Salon {
+public class YonetimSalon {
 	@Id
 	@SequenceGenerator(name = "seq_salon", allocationSize = 1, sequenceName = "seq_salon")
 	@GeneratedValue(generator = "seq_salon", strategy = GenerationType.SEQUENCE)
@@ -30,8 +30,8 @@ public class Salon {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof Salon) {
-			if (((Salon) obj).getId().equals(this.id)) {
+		if (obj instanceof YonetimSalon) {
+			if (((YonetimSalon) obj).getId().equals(this.id)) {
 				return true;
 			}
 		}

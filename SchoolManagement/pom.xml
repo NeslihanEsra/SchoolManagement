@@ -132,7 +132,7 @@
 			<scope>provided</scope>
 		</dependency>
 
-		<!-- retrofit(restful'a client olunur) -->
+		<!-- retrofit(restful servise client olunur) -->
 		<dependency>
 			<groupId>com.squareup.retrofit2</groupId>
 			<artifactId>retrofit</artifactId>

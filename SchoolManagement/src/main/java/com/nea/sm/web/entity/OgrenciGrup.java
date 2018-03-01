@@ -24,8 +24,8 @@ public class OgrenciGrup {
 	
 	@Id
 	@Column(name = "id")
-	@SequenceGenerator(name = "seq_yklm", allocationSize = 1, sequenceName = "seq_yklm")
-	@GeneratedValue(generator = "seq_yklm", strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(name = "seq_ogrenci_grup", allocationSize = 1, sequenceName = "seq_ogrenci_grup")
+	@GeneratedValue(generator = "seq_ogrenci_grup", strategy = GenerationType.SEQUENCE)
 	private Long id;
 	
 	@ManyToOne
@@ -34,7 +34,7 @@ public class OgrenciGrup {
 	
 	@ManyToOne
 	@JoinColumn(name = "grup_id")
-	private Grup grup;
+	private YonetimGrup grup;
 	
 	@Column(name="ucret")
 	private BigDecimal ucret;

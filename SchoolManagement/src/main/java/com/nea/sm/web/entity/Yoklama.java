@@ -29,7 +29,7 @@ public class Yoklama {
 	
 	@ManyToOne
 	@JoinColumn(name = "grup_id")
-	private Grup grup;
+	private YonetimGrup grup;
 	
 	@Column(name="yoklama_aciklama")
 	private String yoklamaAciklama;
@@ -40,7 +40,6 @@ public class Yoklama {
 	@Column(name="yoklama_tarihi")
 	@Temporal(TemporalType.DATE)
 	private Date yoklamaTarihi;
-	
 	
 	@Override
 	public boolean equals(Object obj) {

@@ -9,7 +9,7 @@ import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.nea.sm.web.entity.Kullanici;
-import com.nea.sm.web.entity.KullaniciRol;
+import com.nea.sm.web.entity.EnumKullaniciRol;
 import com.nea.sm.web.repository.KullaniciRepository;
 
 @Service("kullaniciService")
@@ -30,7 +30,7 @@ public class KullaniciService {
 			kullanici.setEklemeTarihi(new Date());
 			kullanici.setEposta("nea@nea.com.tr");
 			kullanici.setKayitDurumu(Boolean.TRUE);
-			kullanici.setRol(KullaniciRol.ADMIN);
+			kullanici.setRol(EnumKullaniciRol.ADMIN);
 			kullanici.setTel("1234567891");
 			kullanici.setUyelikTarihi(new Date());
 			save(kullanici);

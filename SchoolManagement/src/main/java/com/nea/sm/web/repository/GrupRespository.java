@@ -7,13 +7,13 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.nea.sm.web.entity.Grup;
+import com.nea.sm.web.entity.YonetimGrup;
 
 @Repository
-public interface GrupRespository extends JpaRepository<Grup, Long>{
+public interface GrupRespository extends JpaRepository<YonetimGrup, Long>{
 	
-	List<Grup> getAllByOrderByIdAsc();
+	List<YonetimGrup> getAllByOrderByIdAsc();
 	
-	Page<Grup> getAllByOrderByIdAsc(Pageable pageable);
+	Page<YonetimGrup> getAllByOrderByIdAsc(Pageable pageable);
 
 }

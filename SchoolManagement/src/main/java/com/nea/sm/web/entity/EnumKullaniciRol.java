@@ -1,6 +1,6 @@
 package com.nea.sm.web.entity;
 
-public enum KullaniciRol {
+public enum EnumKullaniciRol {
 	ADMIN,
 	MUHASEBE,
 	OGRETMEN,

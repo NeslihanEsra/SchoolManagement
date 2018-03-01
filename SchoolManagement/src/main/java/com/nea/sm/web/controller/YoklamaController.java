@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import com.nea.sm.web.entity.Grup;
+import com.nea.sm.web.entity.YonetimGrup;
 import com.nea.sm.web.entity.Ogrenci;
 import com.nea.sm.web.entity.OgrenciGrup;
 import com.nea.sm.web.entity.Yoklama;
@@ -47,7 +47,7 @@ public class YoklamaController implements Serializable{
 	private Yoklama yoklama;
 
 	@Getter @Setter
-	private List<Grup> grupList;
+	private List<YonetimGrup> grupList;
 	
 	@Getter @Setter
 	private List<OgrenciGrup> ogrenciGrupList;

@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import com.nea.sm.web.entity.Grup;
+import com.nea.sm.web.entity.YonetimGrup;
 import com.nea.sm.web.repository.GrupRespository;
 
 @Controller("grupConverter")
@@ -22,7 +22,7 @@ public class GrupConverter implements Converter {
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {
 		if (value != null && value.trim().length() > 0 && !value.equals("null")) {
 			try {
-				Grup grup = grupRespository.findOne(new Long(value));
+				YonetimGrup grup = grupRespository.findOne(new Long(value));
 				return grup;
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -35,8 +35,8 @@ public class GrupConverter implements Converter {
 
 	@Override
 	public String getAsString(FacesContext context, UIComponent component, Object value) {
-		if (value != null && !value.equals("null") && value instanceof Grup ) {
-			return String.valueOf(((Grup)value).getId());
+		if (value != null && !value.equals("null") && value instanceof YonetimGrup ) {
+			return String.valueOf(((YonetimGrup)value).getId());
 		} else {
 			return null;
 		}
