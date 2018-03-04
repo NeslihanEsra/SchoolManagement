@@ -16,24 +16,25 @@
 			<p:panelGrid columns="2" style="width:100%">
 				<p:outputLabel value="Grup bilgisini seçiniz:" />
 				<p:selectOneMenu value="#{yoklamaController.yoklama.grup}" effect="blind" converter="#{grupConverter}" >
-					<f:selectItems value="#{yoklamaController.grupList}" var="grup" itemLabel="#{grup.ad}" itemValue="#{grup}"/>
-<!-- 					<p:ajax listener="#{yoklamaController.oncekiYoklamariListele}" update="tblYoklamaListesi" /> -->
+					<f:selectItems value="#{yoklamaController.grupList}" var="grup" itemLabel="#{grup.ad}" itemValue="#{grup}" />
 			    </p:selectOneMenu>
 			       		 
 			    <p:outputLabel value="Yoklama tarihini seçiniz:" /> 
-			    <p:calendar id="clndrTarih" value="#{yoklamaController.yoklama.yoklamaTarihi}" showOn="button" pattern="dd/MM/yyyy" />
+			    <p:calendar id="clndrTarih" value="#{yoklamaController.yoklama.yoklamaTarihi}" showOn="button" pattern="dd/MM/yyyy" navigator="true"/>
 			       	 
 			    <p:outputLabel value="İşlenen konu"/> 
 			    <p:inputText value="#{yoklamaController.yoklama.islenenKonu}"/>
 					
 				<f:facet name="footer">	
-			       	<p:commandButton value="Yoklama Getir" update="dlgYoklamaFormu ogrenciSecim" actionListener="#{yoklamaController.yoklamaGetir}" oncomplete="PF('dlgYoklamaFormu').show();"/>
+			       	<p:commandButton value="Yoklama Getir" update=":frmYoklama:dlgYoklamaFormu ogrenciSecim" actionListener="#{yoklamaController.yoklamaGetir}" oncomplete="PF('dlgYoklamaFormu').show();"/>
 			       	<p:commandButton value="Yoklamaları Listele" update="dlgYoklamaListesi tblYoklamaListesi"  actionListener="#{yoklamaController.oncekiYoklamariListele}" oncomplete="PF('dlgYoklamaListesi').show();"/>
 				</f:facet>
 			</p:panelGrid>
+						
 		
+			<!-- Yoklama Form -->
 			<p:dialog header="Yoklama Form" id="dlgYoklamaFormu"  widgetVar="dlgYoklamaFormu" modal="true" resizable="false"  width="750">
-			    <p:selectManyCheckbox id="ogrenciSecim" widgetVar="ogrenciSecim" value="#{yoklamaController.gelenOgrencilerList}">
+			    <p:selectManyCheckbox id="ogrenciSecim" widgetVar="ogrenciSecim" value="#{yoklamaController.gelenOgrencilerList}" layout="responsive"  columns="3">
 			        <f:selectItems value="#{yoklamaController.ogrenciGrupList}" var="ogrGrp" itemLabel="#{ogrGrp.ogrenci.adSoyad}" itemValue="#{ogrGrp.ogrenci.id}" />
 			    </p:selectManyCheckbox>
 			    
@@ -42,6 +43,8 @@
 				</f:facet>
 			</p:dialog>
 			
+			
+			<!-- Yoklama Listesi -->
 			<p:dialog header="Yoklama Listesi" id="dlgYoklamaListesi" widgetVar="dlgYoklamaListesi" modal="true" resizable="false" width="750">
 				<p:dataTable  id="tblYoklamaListesi" widgetVar="tblYoklamaListesi" value="#{yoklamaController.oncekiYoklamaList}">
 					<p:column headerText="Yoklama Id">

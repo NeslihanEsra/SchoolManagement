@@ -41,6 +41,9 @@ public class Kullanici extends BaseEntity {
 	@Column(name = "k_sifre")
 	private String sifre;
 	
+	@Transient
+	private String sifreTekrar;
+	
 	@Column(name = "eposta", length = 15)
 	private String eposta;
 	

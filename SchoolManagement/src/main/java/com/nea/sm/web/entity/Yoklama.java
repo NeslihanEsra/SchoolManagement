@@ -31,9 +31,6 @@ public class Yoklama {
 	@JoinColumn(name = "grup_id")
 	private YonetimGrup grup;
 	
-	@Column(name="yoklama_aciklama")
-	private String yoklamaAciklama;
-	
 	@Column(name="islenen_konu")
 	private String islenenKonu;
 	

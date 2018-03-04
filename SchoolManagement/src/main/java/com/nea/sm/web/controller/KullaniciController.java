@@ -34,8 +34,8 @@ public class KullaniciController implements Serializable{
 	@Autowired
 	private KullaniciService kullaniciService;
 	
-//	@Getter @Setter
-//	private List<Kullanici> kullaniciList;
+	@Getter @Setter
+	private List<Kullanici> kullaniciList;
 	
 	@Getter @Setter
 	private LazyDataModel<Kullanici> lazyDataModel;
@@ -104,5 +104,4 @@ public class KullaniciController implements Serializable{
 	public EnumKullaniciRol[] getRol() {
         return EnumKullaniciRol.values();
     }
-
 }

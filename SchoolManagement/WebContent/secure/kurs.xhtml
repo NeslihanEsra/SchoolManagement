@@ -1,0 +1,70 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/content/layout/template.xhtml">
+	<ui:define name="pageContent">
+		<h:form id="frmKurs">
+			<style>
+			.ui-selectonemenu .ui-selectonemenu-trigger{
+				width:23px !important;
+				padding:3px !important;
+			}
+			</style>
+		
+			<p:dataTable id="tblKurs" widgetVar="tblKurs" var="kurs" value="#{kursController.lazyDataModel}" 
+			reflow="true" paginator="true" rows="10" lazy="true" 
+			paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+			rowsPerPageTemplate="5,10,15" >
+				<f:facet name="header">
+					Kurs Listesi
+				</f:facet>
+				
+				<p:column headerText="Id">
+					<h:outputText value="#{kurs.id}" />
+				</p:column>
+		
+				<p:column headerText="Kurs Adı">
+					<h:outputText value="#{kurs.ad}" />
+				</p:column>
+				
+				<p:column headerText="Fiyatı">
+					<h:outputText value="#{kurs.fiyat}" />
+				</p:column>
+				
+				<p:column headerText="İşlemler">
+					<p:commandButton icon="ui-icon-trash" actionListener="#{kursController.kursSil(kurs.id)}" update="tblKurs">
+						<p:confirm header="Silme Onay" message="Kursu silmek istediğinizden emin misiniz?" icon="ui-icon-alert" />
+					</p:commandButton>	
+					<p:commandButton icon="ui-icon-pencil" actionListener="#{kursController.kursGuncelle(kurs.id)}" update=":frmKurs:dlgKurs" oncomplete="PF('dlgKurs').show();" />
+					
+					<!-- silme modal -->
+					<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+						<p:commandButton value="Evet" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+						<p:commandButton value="Hayır" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			    	</p:confirmDialog>
+				</p:column>
+				
+				<!-- 'yeni' butonu -->
+				<f:facet name="footer">
+					<p:commandButton icon="ui-icon-plus" value="Yeni" update=":frmKurs:dlgKurs" actionListener="#{kursController.yenile}" oncomplete="PF('dlgKurs').show();" />
+				</f:facet>
+			</p:dataTable>
+		
+			<p:dialog header="Kurs Bilgileri" widgetVar="dlgKurs" id="dlgKurs" modal="true" resizable="false" >
+				<p:panelGrid columns="2">			
+					<p:outputLabel value="Kurs Adı" />
+					<p:inputText  value="#{kursController.kurs.ad}" />
+					
+					<p:outputLabel value="Kurs Fiyatı" />
+					<p:inputNumber  value="#{kursController.kurs.fiyat}" symbol=" ₺" symbolPosition="s"/>
+								
+					<p:commandButton value="İptal" type="button" onclick="PF('dlgKurs').hide();" />
+					<p:commandButton value="Kaydet" update="dlgKurs tblKurs" oncomplete="PF('dlgKurs').hide();" actionListener="#{kursController.kursKaydet}"  />
+				</p:panelGrid>
+			</p:dialog>
+		
+		</h:form>
+	</ui:define>
+</ui:composition>

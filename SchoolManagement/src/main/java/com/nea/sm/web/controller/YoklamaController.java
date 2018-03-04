@@ -10,12 +10,14 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import com.nea.sm.web.entity.YonetimGrup;
+import com.nea.sm.web.entity.IKOgretmen;
 import com.nea.sm.web.entity.Ogrenci;
 import com.nea.sm.web.entity.OgrenciGrup;
 import com.nea.sm.web.entity.Yoklama;
 import com.nea.sm.web.entity.YoklamaDetay;
 import com.nea.sm.web.repository.GrupRespository;
 import com.nea.sm.web.repository.OgrenciGrupRepository;
+import com.nea.sm.web.repository.OgrenciRepository;
 import com.nea.sm.web.repository.YoklamaDetayRepository;
 import com.nea.sm.web.repository.YoklamaRepository;
 
@@ -43,24 +45,26 @@ public class YoklamaController implements Serializable{
 	@Autowired
 	private OgrenciGrupRepository ogrenciGrupRepository;
 	
+	
 	@Getter @Setter
 	private Yoklama yoklama;
 
-	@Getter @Setter
+	@Getter 
 	private List<YonetimGrup> grupList;
 	
-	@Getter @Setter
+	@Getter 
 	private List<OgrenciGrup> ogrenciGrupList;
-	
-	@Getter @Setter
-	private List<Yoklama> yoklamaList;
 	
 	@Getter @Setter
 	private List<String> gelenOgrencilerList;
 	
 	@Getter @Setter
+	private List<Yoklama> yoklamaList;
+	
+	@Getter @Setter
 	private List<Yoklama> oncekiYoklamaList;
 		
+	
 	@PostConstruct
 	public void init() {
 		grupList = grupRespository.findAll();
@@ -68,10 +72,15 @@ public class YoklamaController implements Serializable{
 	}
 	
 	public void yoklamaGetir() {
-		System.out.println("yoklama formu göründü");
 		ogrenciGrupList = ogrenciGrupRepository.getGrupById(yoklama.getGrup().getId());
+		//ogrenciGrupList = ogrenciGrupRepository.findAll();
+		System.out.println("grup ogrencileri listelendi");
 	}
 	
+//	public void grupIdGetir(Long id) {
+//		ogrenciGrupList = ogrenciGrupRepository.findById(yoklama.getGrup().getId());
+//	}
+
 	//önce yoklama tablosunu sonra yoklamaDetay tablosu kaydedilir
 	public void yoklamaKaydet() {
 		yoklama = yoklamaRepository.save(yoklama);

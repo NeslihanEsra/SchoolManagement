@@ -16,9 +16,11 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Entity
 @Table(name="ogrenci_grup")
+@EqualsAndHashCode(callSuper = false)
 @Data
 public class OgrenciGrup {
 	

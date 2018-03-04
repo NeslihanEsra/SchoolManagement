@@ -28,10 +28,6 @@ public class YonetimKurs {
 	@Column(name = "ad")
 	private String ad;
 
-	@Column(name = "baslama_tarihi")
-	@Temporal(TemporalType.DATE)
-	private Date baslamaTarihi;
-
 	@Column(name = "fiyat")
 	private BigDecimal fiyat;
 

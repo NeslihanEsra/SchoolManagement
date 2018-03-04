@@ -17,12 +17,16 @@
 				}
 			</style>
 		
-			<p:growl id="growl" showDetail="true" sticky="true" autoUpdate="true" />
+			<p:growl id="growl" showDetail="true" sticky="sticky" autoUpdate="true" escape="true" life="2000"/>
 		
 			<p:dataTable id="tblKullanici" widgetVar="tblKullanici" var="kullanici" value="#{kullaniciController.lazyDataModel}" 
 			reflow="true" paginator="true" rows="5" lazy="true" 
 			paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 			rowsPerPageTemplate="5,10,15" >
+			
+				<f:facet name="header">
+					<p:outputLabel value="Kullanıcı Listesi"/>
+				</f:facet>
 
 				<p:column headerText="Id">
 					<h:outputText value="#{kullanici.id}" />
@@ -77,8 +81,9 @@
 				</f:facet>
 			</p:dataTable>
 		
-			<p:dialog header="Kullanıcı Bilgileri" widgetVar="dlgKullanici" id="dlgKullanici" modal="true" resizable="false" >
-				<p:panelGrid columns="2">	
+			<p:dialog header="Kullanıcı Bilgileri" widgetVar="dlgKullanici" id="dlgKullanici" modal="true" showEffect="fade" hideEffect="fade" resizable="false" >
+				
+				<p:panelGrid columns="2" id="pnlKullanici">	
 					<p:outputLabel value="Ad" />
 					<p:inputText  value="#{kullaniciController.kullanici.ad}" />
 					
@@ -93,8 +98,8 @@
 						<f:selectItems value="#{kullaniciController.rol}" var="rol" itemLabel="#{rol.rolAd}" itemValue="#{rol}" />
 					</p:selectOneMenu>
 					
-					<p:outputLabel value="Şifre" />
-					<p:password  value="#{kullaniciController.kullanici.sifre}" />
+					<p:outputLabel for="sfr1" value="Şifre" />
+					<p:password id="sfr1" value="#{kullaniciController.kullanici.sifre}" />
 		        	
 					<p:outputLabel value="Eposta" />
 					<p:inputText  value="#{kullaniciController.kullanici.eposta}" />
@@ -107,6 +112,7 @@
 						<p:commandButton value="Kaydet" update="dlgKullanici tblKullanici" oncomplete="PF('dlgKullanici').hide();" actionListener="#{kullaniciController.kullaniciKaydet}"  />
 					</f:facet>
 				</p:panelGrid>
+				
 			</p:dialog>
 		</h:form>
 	</ui:define>
