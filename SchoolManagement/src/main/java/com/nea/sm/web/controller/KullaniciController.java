@@ -48,7 +48,6 @@ public class KullaniciController implements Serializable{
 	
 	@PostConstruct
 	private void init() {
-		System.out.println("Kullanýcý-Post Construct oluþturuldu");
 		sýrala();
 		kullanici = new Kullanici();
 	}

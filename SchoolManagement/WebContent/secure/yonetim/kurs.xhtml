@@ -7,11 +7,12 @@
 	<ui:define name="pageContent">
 		<h:form id="frmKurs">
 			<style>
-			.ui-selectonemenu .ui-selectonemenu-trigger{
-				width:23px !important;
-				padding:3px !important;
-			}
+			.ui-growl {
+				z-index:9999 !important;
+				}
 			</style>
+			
+			<p:growl id="growl" showDetail="true" sticky="sticky" autoUpdate="true" escape="true" life="2000"/>
 		
 			<p:dataTable id="tblKurs" widgetVar="tblKurs" var="kurs" value="#{kursController.lazyDataModel}" 
 			reflow="true" paginator="true" rows="10" lazy="true" 

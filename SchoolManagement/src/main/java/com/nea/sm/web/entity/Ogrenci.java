@@ -47,7 +47,7 @@ public class Ogrenci {
 	@Temporal(TemporalType.DATE)
 	private Date kayitTarihi;
 	
-	@Enumerated
+	@Enumerated()
 	@Column(name="cinsiyet")
 	private EnumCinsiyet cinsiyet;
 	

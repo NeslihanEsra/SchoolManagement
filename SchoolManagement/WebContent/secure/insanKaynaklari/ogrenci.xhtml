@@ -1,0 +1,78 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/content/layout/template.xhtml">
+
+	<ui:define name="pageContent">
+		<h:form id="frmOgrenci">
+		
+			<style>
+				.ui-growl {
+				z-index:9999 !important;
+				}
+				.ui-selectonemenu .ui-selectonemenu-trigger{
+				width:23px !important;
+				padding:3px !important;
+				}
+			</style>
+			
+			<p:growl id="growl" showDetail="true" sticky="sticky" autoUpdate="true" escape="true" life="2000"/>
+			
+			<p:dataTable id="tblOgrenci" widgetVar="tblOgrenci" var="ogrenci" value="#{ogrenciController.lazyDataModel}" 
+			reflow="true" paginator="true" rows="5" lazy="true" 
+			paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+			rowsPerPageTemplate="5,10,15">
+				<f:facet name="header">
+					<p:outputLabel>Öğrenci Listesi</p:outputLabel>
+				</f:facet>
+				
+				<p:column headerText="Id">
+					<p:outputLabel value="#{ogrenci.id}"/>
+				</p:column>
+				
+				<p:column headerText="Ad">
+					<p:outputLabel value="#{ogrenci.ad}"/>
+				</p:column>
+				
+				<p:column headerText="Soyad">
+					<p:outputLabel value="#{ogrenci.soyad}"/>
+				</p:column>
+				
+				<p:column headerText="Adres">
+					<p:outputLabel value="#{ogrenci.adres}"/>
+				</p:column>
+				
+				<p:column headerText="Telefon">
+					<p:outputLabel value="#{ogrenci.tel}"/>
+				</p:column>
+				
+				<p:column headerText="Eposta">
+					<p:outputLabel value="#{ogrenci.eposta}"/>
+				</p:column>
+				
+				<p:column headerText="Kayıt Tarihi">
+					<p:outputLabel value="#{ogrenci.kayitTarihi}">
+						<f:convertDateTime pattern="dd-MM-yyyy"/>
+					</p:outputLabel>
+				</p:column>
+				
+				<p:column headerText="İşlemler">
+					<p:commandButton icon="ui-icon-trash">
+					</p:commandButton>
+					<p:commandButton icon="ui-icon-pencil" />
+					
+					<!-- silme modal -->
+					<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+				        <p:commandButton value="Evet" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+				        <p:commandButton value="Hayır" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+		    		</p:confirmDialog>
+				</p:column>
+				
+				
+				
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>
