@@ -24,8 +24,8 @@ public class Ogrenci {
 
 	@Id
 	@Column(name = "id")
-	@SequenceGenerator(name = "seq_ogrnc", allocationSize = 1, sequenceName = "seq_ogrnc")
-	@GeneratedValue(generator = "seq_ogrnc", strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(name = "seq_ogr", allocationSize = 1, sequenceName = "seq_ogr")
+	@GeneratedValue(generator = "seq_ogr", strategy = GenerationType.SEQUENCE)
 	private Long id;
 	
 	@Column(name="ad")
@@ -47,7 +47,7 @@ public class Ogrenci {
 	@Temporal(TemporalType.DATE)
 	private Date kayitTarihi;
 	
-	@Enumerated()
+	@Enumerated(EnumType.STRING)
 	@Column(name="cinsiyet")
 	private EnumCinsiyet cinsiyet;
 	

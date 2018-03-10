@@ -16,6 +16,9 @@
 				width:23px !important;
 				padding:3px !important;
 				}
+				.ui-panelgrid{
+					width: 100%;
+				}
 			</style>
 			
 			<p:growl id="growl" showDetail="true" sticky="sticky" autoUpdate="true" escape="true" life="2000"/>
@@ -29,39 +32,40 @@
 				</f:facet>
 				
 				<p:column headerText="Id">
-					<p:outputLabel value="#{ogrenci.id}"/>
+					<h:outputText value="#{ogrenci.id}"/>
 				</p:column>
 				
-				<p:column headerText="Ad">
-					<p:outputLabel value="#{ogrenci.ad}"/>
+				<p:column headerText="Ad Soyad">
+					<h:outputText value="#{ogrenci.adSoyad}"/>
 				</p:column>
 				
-				<p:column headerText="Soyad">
-					<p:outputLabel value="#{ogrenci.soyad}"/>
+				<p:column headerText="Cinsiyet">
+					<h:outputText value="#{ogrenci.cinsiyet.cinsiyet}" />
 				</p:column>
 				
 				<p:column headerText="Adres">
-					<p:outputLabel value="#{ogrenci.adres}"/>
+					<h:outputText value="#{ogrenci.adres}"/>
 				</p:column>
 				
 				<p:column headerText="Telefon">
-					<p:outputLabel value="#{ogrenci.tel}"/>
+					<h:outputText value="#{ogrenci.tel}"/>
 				</p:column>
 				
 				<p:column headerText="Eposta">
-					<p:outputLabel value="#{ogrenci.eposta}"/>
+					<h:outputText value="#{ogrenci.eposta}"/>
 				</p:column>
 				
 				<p:column headerText="Kayıt Tarihi">
-					<p:outputLabel value="#{ogrenci.kayitTarihi}">
+					<h:outputText value="#{ogrenci.kayitTarihi}">
 						<f:convertDateTime pattern="dd-MM-yyyy"/>
-					</p:outputLabel>
+					</h:outputText>
 				</p:column>
 				
 				<p:column headerText="İşlemler">
-					<p:commandButton icon="ui-icon-trash">
+					<p:commandButton icon="ui-icon-trash" actionListener="#{ogrenciController.ogrenciSil(ogrenci.id)}" update=":frmOgrenci:tblOgrenci">
+						<p:confirm header="Silme Onay" message="Kaydı silmek istediğinizden emin misiniz?" icon="ui-icon-alert" />
 					</p:commandButton>
-					<p:commandButton icon="ui-icon-pencil" />
+					<p:commandButton icon="ui-icon-pencil" actionListener="#{ogrenciController.ogrenciGuncelle(ogrenci.id)}" update=":frmOgrenci:pnlOgrenci" oncomplete="PF('dlgOgrenci').show();"/>
 					
 					<!-- silme modal -->
 					<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
@@ -69,10 +73,41 @@
 				        <p:commandButton value="Hayır" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
 		    		</p:confirmDialog>
 				</p:column>
-				
-				
-				
+		    		
+	    		<!-- yeni butonu-->
+		    	<f:facet name="footer">
+		    		<p:commandButton value="Yeni" icon="ui-icon-plus" oncomplete="PF('dlgOgrenci').show();" update=":frmOgrenci:pnlOgrenci" actionListener="#{ogrenciController.yeniOgrenci}" />	
+		    	</f:facet>
 			</p:dataTable>
+			
+			<p:dialog header="Ogrenci From" id="dlgOgrenci" widgetVar="dlgOgrenci" modal="true" resizable="false" showEffect="fade" hideEffect="fade">
+				<p:panelGrid id="pnlOgrenci" columns="2">
+					<p:outputLabel value="Ad"/>
+					<p:inputText value="#{ogrenciController.ogrenci.ad}"/>
+							
+					<p:outputLabel value="Soyad"/>
+					<p:inputText value="#{ogrenciController.ogrenci.soyad}"/>
+					
+					<p:outputLabel value="Cinsiyet"/>
+					<p:selectOneMenu value="#{ogrenciController.ogrenci.cinsiyet}" >
+						<f:selectItems value="#{ogrenciController.cinsiyet}" var="cinsiyet" itemLabel="#{cinsiyet.cinsiyet}" itemValue="#{cinsiyet}" />
+					</p:selectOneMenu>
+					
+					<p:outputLabel value="Adres"/>
+					<p:inputText value="#{ogrenciController.ogrenci.adres}"/>
+					
+					<p:outputLabel value="Telefon"/>
+					<p:inputMask value="#{ogrenciController.ogrenci.tel}" mask="(999)999-9999" />
+					
+					<p:outputLabel value="Eposta"/>
+					<p:inputText value="#{ogrenciController.ogrenci.eposta}"/>
+					
+					<f:facet name="footer">
+						<p:commandButton value="İptal" type="button" onclick="PF('dlgOgrenci').hide()"/>
+						<p:commandButton value="Kaydet" update=":frmOgrenci:tblOgrenci :frmOgrenci:dlgOgrenci" actionListener="#{ogrenciController.ogrenciKaydet}" oncomplete="PF('dlgOgrenci').hide();"/>
+					</f:facet>
+				</p:panelGrid>
+			</p:dialog>
 		</h:form>
 	</ui:define>
 </ui:composition>

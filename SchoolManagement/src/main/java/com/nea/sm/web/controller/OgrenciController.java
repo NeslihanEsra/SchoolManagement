@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
@@ -17,6 +19,7 @@ import org.springframework.stereotype.Controller;
 import com.nea.sm.web.entity.EnumCinsiyet;
 import com.nea.sm.web.entity.Ogrenci;
 import com.nea.sm.web.repository.OgrenciRepository;
+import com.nea.sm.web.service.OgrenciService;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -25,16 +28,21 @@ import lombok.Setter;
 @Scope("session")
 public class OgrenciController implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
+
 	@Autowired
 	private OgrenciRepository ogrenciRepository;
+	
+	@Autowired
+	private OgrenciService ogrenciService;
 	
 	@Getter @Setter
 	private Ogrenci ogrenci;
 	
-	@Getter 
+	@Getter @Setter
 	private List<Ogrenci> ogrenciList;
 	
-	@Getter @Setter
+	@Setter
 	private EnumCinsiyet cinsiyet;
 	
 	@Getter 
@@ -44,6 +52,7 @@ public class OgrenciController implements Serializable{
 	public void init() {
 		System.out.println("Ogrenci Post Construct oluþturuldu");
 		sýrala();
+		ogrenci = new Ogrenci();
 	}
 	
 	public void sýrala() {
@@ -63,9 +72,31 @@ public class OgrenciController implements Serializable{
 	}
 	
 	public void ogrenciKaydet() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		try {
+			ogrenciService.save(ogrenci);
+			sýrala();
+			context.addMessage(null, new FacesMessage("BAÞARILI",  "Ýþlem gerçekleþtirildi") );
+		} catch (Exception e) {
+			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "HATA",  "Ýþlem baþarýsýz") );
+		}
+		ogrenci = new Ogrenci();
 	}
 	
-	public void ogrenciSil() {
+	public void ogrenciSil(Long id) {
+		Ogrenci ogr = ogrenciRepository.findOne(id);
+		ogrenciRepository.delete(ogr);
+		FacesContext context = FacesContext.getCurrentInstance();
+		context.addMessage(null, new FacesMessage("BAÞARILI",  "Kayýt silindi") );
+		sýrala();
+	}
+	
+	public void ogrenciGuncelle(Long id) {
+		ogrenci = ogrenciRepository.findOne(id);
+	}
+	
+	public void yeniOgrenci() {
+		ogrenci = new Ogrenci();
 	}
 	
 	public EnumCinsiyet[] getCinsiyet(){

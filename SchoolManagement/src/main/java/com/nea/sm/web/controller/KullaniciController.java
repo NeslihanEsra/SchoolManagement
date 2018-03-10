@@ -27,6 +27,8 @@ import lombok.Setter;
 @Controller("kullaniciController")
 @Scope("session")
 public class KullaniciController implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 
 	@Autowired
 	private KullaniciRepository kullaniciRepository;
@@ -43,7 +45,7 @@ public class KullaniciController implements Serializable{
 	@Getter @Setter
 	private Kullanici kullanici;
 	
-	@Getter @Setter
+	@Setter
 	private EnumKullaniciRol rol;
 	
 	@PostConstruct
@@ -75,7 +77,6 @@ public class KullaniciController implements Serializable{
 	}
 	
 	public void kullaniciyiGüncelle(Long id) {
-		System.out.println("Kullanýcý guncellendi");
 		kullanici = kullaniciRepository.findOne(id);
 	}
 	

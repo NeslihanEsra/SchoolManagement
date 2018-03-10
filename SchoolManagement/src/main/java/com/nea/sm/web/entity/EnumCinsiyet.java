@@ -7,7 +7,7 @@ public enum EnumCinsiyet {
 	
 	private String cinsiyet;
 	
-	private EnumCinsiyet(String cinsiyet){
+	private EnumCinsiyet (String cinsiyet){
 		this.cinsiyet = cinsiyet;
 	}
 	
